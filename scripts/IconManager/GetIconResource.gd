@@ -1,0 +1,127 @@
+# Icon type
+enum IconType {
+	Keystone = 0,
+	Mapstone = 1,
+	BreakableWall = 2,
+	BreakableWallBroken = 3,
+	StompableFloor = 4,
+	StompableFloorBroken = 5,
+	EnergyGateTwo = 6,
+	EnergyGateOpen = 7,
+	KeystoneDoorFour = 8,
+	KeystoneDoorOpen = 9,
+	AbilityPedestal = 10,
+	HealthUpgrade = 11,
+	EnergyUpgrade = 12,
+	SavePedestal = 13,
+	AbilityPoint = 14,
+	KeystoneDoorTwo = 15,
+	Experience = 17,
+	MapstonePickup = 18,
+	EnergyGateTwelve = 19,
+	EnergyGateTen = 20,
+	EnergyGateEight = 21,
+	EnergyGateSix = 22,
+	EnergyGateFour = 23,
+	SpiritShard = 24,
+	NPC = 25,
+	QuestItem = 26,
+	ShardSlotUpgrade = 27,
+	Teleporter = 28,
+	Ore = 29,
+	QuestStart = 30,
+	QuestEnd = 31,
+	RaceStart = 32,
+	HealthFragment = 33,
+	EnergyFragment = 34,
+	Seed = 35,
+	RaceEnd = 36,
+	Eyestone = 37,
+	WatermillDoor = 40,
+	TempleDoor = 41,
+	SmallDoor = 42,
+	Shrine = 43,
+	ShrineFinished = 44,
+	Loremaster = 50,
+	Weaponmaster = 51,
+	Gardener = 52,
+	Mapmaker = 53,
+	Shardtrader = 54,
+	Wanderer = 55,
+	Treekeeper = 56,
+	Builder = 57,
+	Kwolok = 58,
+	Statistician = 59,
+	CreepHeart = 60,
+	Miner = 61,
+	Spiderling = 62,
+	Moki = 63,
+	MokiBrave = 64,
+	MokiAdventurer = 65,
+	MokiArtist = 66,
+	MokiDarkness = 67,
+	MokiFashionable = 68,
+	MokiFisherman = 69,
+	MokiFrozen = 70,
+	MokiKwolokAmulet = 71,
+	MokiSpyglass = 72,
+	Ku = 73,
+	IceFisher = 74,
+	Siira = 75,
+	SavePedestalInactive = 76,
+	RaceStartFinished = 77,
+	RaceEndFinished = 78,
+	CleanWater = 100,
+	BonusItem = 101,
+	LaunchFragment = 102,
+	PurpleFloor = 103,
+	PurpleWall = 104,
+	YellowWall = 105,
+	OneWayWallLeft = 106,
+	OneWayWallRight = 107,
+	IceWall = 108,
+	IceFloor = 109,
+	VerticalDoor = 110,
+	HorizontalDoor = 111,
+	Lever = 112,
+	Door = 113,
+	DoorUnknown = 114,
+	DoorSmall = 115,
+	DoorSmallUnknown = 116,
+	Wisp = 117,
+}
+
+
+static func get_icon_resource(icon_id: int) -> String:
+	match icon_id:
+		IconType.Keystone: return "res://assets/icons/pickups/resource/Keystone.png"
+		IconType.Eyestone: return "res://assets/icons/pickups/resource/Eyestone.png"
+		IconType.EnergyFragment: return "res://assets/icons/pickups/resource/Energy.png"
+		IconType.HealthFragment: return "res://assets/icons/pickups/resource/Health.png"
+		IconType.Experience: return "res://assets/icons/pickups/resource/SpiritLight.png"
+		IconType.Ore: return "res://assets/icons/pickups/resource/Ore.png"
+		IconType.SpiritShard: return "res://assets/icons/pickups/Shard.png"
+		IconType.Seed: return "res://assets/icons/pickups/Seed.png"
+		IconType.Wisp: return "res://assets/icons/pickups/Wisp.png"
+		IconType.ShardSlotUpgrade: return "res://assets/icons/pickups/resource/ShardSlot.png"
+		IconType.Teleporter: return "res://assets/icons/Teleporter.png"
+		IconType.AbilityPedestal: return "res://assets/icons/pickups/SkillTree.png"
+		IconType.KeystoneDoorTwo: return "res://assets/icons/DoorKeystone2.png"
+		IconType.KeystoneDoorFour: return "res://assets/icons/DoorKeystone4.png"
+		IconType.RaceStart: return "res://assets/icons/trials/RaceStart.png"
+		IconType.RaceEnd: return "res://assets/icons/trials/RaceFinish.png"
+		IconType.Shrine: return "res://assets/icons/trials/Shrine.png"
+		IconType.CreepHeart: return "res://assets/icons/WillowHeart.png"
+		IconType.QuestItem: return "res://assets/icons/pickups/QuestReward.png"
+		# All the mokis
+		IconType.Moki, IconType.MokiBrave, IconType.MokiAdventurer, IconType.MokiArtist, IconType.MokiDarkness, IconType.MokiFashionable, IconType.MokiFisherman, IconType.MokiFrozen, IconType.MokiKwolokAmulet, IconType.MokiSpyglass: return "res://assets/npc/Moki.png"
+		# Shops
+		IconType.Mapmaker: return "res://assets/icons/npc/Lupo.png"
+		IconType.Gardener: return "res://assets/icons/npc/Veral.png"
+		IconType.Builder: return "res://assets/icons/npc/Grom.png"
+		IconType.Treekeeper: return "res://assets/icons/npc/Kii.png"
+		IconType.Weaponmaster: return "res://assets/icons/npc/Opher.png"
+		IconType.Shardtrader: return "res://assets/icons/npc/Twillen.png"
+		_:
+			print("Unsupported icon identifier \"%d\" - \"%s\"" % [icon_id, IconType.find_key(icon_id)])
+			return "res://assets/icons/Unknown.png"

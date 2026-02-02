@@ -1,0 +1,169 @@
+[gd_scene format=3 uid="uid://c1xnpteo6atvc"]
+
+[ext_resource type="PackedScene" uid="uid://ccs75bygv2cx6" path="res://scenes/map/WotwMap.tscn" id="1_elqb8"]
+[ext_resource type="Script" uid="uid://imy6sqiq04ty" path="res://scenes/Main.gd" id="1_rvslj"]
+[ext_resource type="Script" uid="uid://32yogalb1afk" path="res://scenes/panel/SidePanel.gd" id="3_0bbpv"]
+[ext_resource type="Script" uid="uid://cfsj5cmqyylss" path="res://scenes/panel/ItemSelection.gd" id="5_vcsgt"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rarhs"]
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vcsgt"]
+bg_color = Color(0, 0, 0.11764706, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_c01mt"]
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nxtc6"]
+bg_color = Color(0, 0, 0.11764706, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jlsqs"]
+bg_color = Color(0, 0, 0, 0.79607844)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_q8u5g"]
+bg_color = Color(0.078431375, 0, 0, 0.78431374)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.11764706, 0, 0, 1)
+border_blend = true
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lhr70"]
+bg_color = Color(0.11764706, 0, 0, 0.78431374)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.39215687, 0, 0, 1)
+border_blend = true
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wp0k4"]
+bg_color = Color(0, 0.078431375, 0, 0.78431374)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0, 0.078431375, 0, 1)
+border_blend = true
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bjd11"]
+bg_color = Color(0, 0.15686275, 0, 0.78431374)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0, 0.39215687, 0, 1)
+border_blend = true
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+
+[node name="Main" type="Control" unique_id=1364075408]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_rvslj")
+
+[node name="Background" type="ColorRect" parent="." unique_id=1022705432]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="WotwMap" parent="." unique_id=324143865 instance=ExtResource("1_elqb8")]
+unique_name_in_owner = true
+layout_mode = 1
+
+[node name="SidePanel" type="FoldableContainer" parent="." unique_id=814608313 groups=["PanelGroup"]]
+unique_name_in_owner = true
+z_index = 10
+layout_mode = 0
+offset_left = 4.0
+offset_top = 4.0
+offset_right = 296.0
+offset_bottom = 644.0
+theme_override_styles/title_panel = SubResource("StyleBoxFlat_rarhs")
+theme_override_styles/title_hover_panel = SubResource("StyleBoxFlat_vcsgt")
+theme_override_styles/title_collapsed_panel = SubResource("StyleBoxFlat_c01mt")
+theme_override_styles/title_collapsed_hover_panel = SubResource("StyleBoxFlat_nxtc6")
+theme_override_styles/panel = SubResource("StyleBoxFlat_jlsqs")
+title = "Select any pickup"
+title_alignment = 1
+script = ExtResource("3_0bbpv")
+metadata/_edit_lock_ = true
+
+[node name="MarginContainer" type="MarginContainer" parent="SidePanel" unique_id=1476642319]
+clip_contents = true
+layout_mode = 2
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
+
+[node name="VBoxContainer" type="VBoxContainer" parent="SidePanel/MarginContainer" unique_id=756253303]
+layout_mode = 2
+theme_override_constants/separation = 4
+
+[node name="ScrollContainer" type="ScrollContainer" parent="SidePanel/MarginContainer/VBoxContainer" unique_id=1943160499]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="ItemList" type="ItemList" parent="SidePanel/MarginContainer/VBoxContainer/ScrollContainer" unique_id=518092266]
+unique_name_in_owner = true
+clip_contents = false
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+select_mode = 2
+allow_reselect = true
+scroll_hint_mode = 1
+fixed_icon_size = Vector2i(20, 20)
+script = ExtResource("5_vcsgt")
+
+[node name="RemoveSlider" type="CheckButton" parent="SidePanel/MarginContainer/VBoxContainer" unique_id=1186989475]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Take away selected"
+
+[node name="HSeparator" type="HSeparator" parent="SidePanel/MarginContainer/VBoxContainer" unique_id=2137152200]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="SidePanel/MarginContainer/VBoxContainer" unique_id=1096796111]
+layout_mode = 2
+
+[node name="ButtonClear" type="Button" parent="SidePanel/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1302615138]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/normal = SubResource("StyleBoxFlat_q8u5g")
+theme_override_styles/hover = SubResource("StyleBoxFlat_lhr70")
+text = "Reset"
+
+[node name="ButtonOk" type="Button" parent="SidePanel/MarginContainer/VBoxContainer/HBoxContainer" unique_id=980633886]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/normal = SubResource("StyleBoxFlat_wp0k4")
+theme_override_styles/hover = SubResource("StyleBoxFlat_bjd11")
+text = "Save"
+
+[connection signal="folding_changed" from="SidePanel" to="SidePanel" method="_on_folding_changed"]
