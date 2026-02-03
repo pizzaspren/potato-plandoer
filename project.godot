@@ -10,7 +10,7 @@ config_version=5
 
 [application]
 
-config/name="Potato Plandoer"
+config/name="Pizza's Potato Plandoer"
 run/main_scene="uid://c1xnpteo6atvc"
 config/features=PackedStringArray("4.6", "GL Compatibility")
 config/icon="uid://bkr5oaeuumw1n"
