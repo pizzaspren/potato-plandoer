@@ -44,6 +44,7 @@ func _enable_all_controls() -> void:
 func _on_new_pickup(pickup_name: String, selected_pickups: PackedInt32Array, is_removing: bool, save_callback: Callable) -> void:
 	if _is_all_disabled:
 		_enable_all_controls()
+	expand()
 	
 	# TODO auto-save previous pickup?
 	
@@ -61,6 +62,7 @@ func _on_reset_pickup() -> void:
 	item_list.deselect_all()
 	item_list.get_v_scroll_bar().value = 0  # Scroll to the top
 	remove_slider.button_pressed = false
+	# TODO: Confirmation feedback
 
 
 func _on_save_pickup() -> void:
@@ -70,3 +72,4 @@ func _on_save_pickup() -> void:
 	var selectedItems:PackedInt32Array = item_list.get_selected_items()
 	var is_removing:bool = remove_slider.button_pressed
 	_current_save_callback.call(_current_pickup_name, selectedItems, is_removing)
+	# TODO: Confirmation feedback

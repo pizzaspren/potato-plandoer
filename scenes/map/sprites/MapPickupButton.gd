@@ -31,14 +31,7 @@ func _ready() -> void:
 func _on_pressed() -> void:
 	if not _panel:
 		_panel = get_tree().get_nodes_in_group("PanelGroup")[0]
-	if _panel.folded:
-		_panel.expand()
-	_panel.emit_signal("new_pickup",
-		name,
-		_selected_pickups,
-		_is_removing,
-		_on_save_from_panel
-	)
+	_panel.new_pickup.emit(name, _selected_pickups, _is_removing, _on_save_from_panel)
 
 
 func _on_save_from_panel(pickup_name: String, selected_pickups: PackedInt32Array, is_removing: bool):
