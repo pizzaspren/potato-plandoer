@@ -227,6 +227,7 @@ metadata/_edit_lock_ = true
 
 [node name="Pickups" type="Node2D" parent="Origin/InGameOrigin/Icons" unique_id=703092305]
 script = ExtResource("2_d0ega")
+metadata/_edit_lock_ = true
 
 [node name="Tiles" type="Node2D" parent="Origin/InGameOrigin" unique_id=1826790488]
 unique_name_in_owner = true

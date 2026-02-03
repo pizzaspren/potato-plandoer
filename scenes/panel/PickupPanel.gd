@@ -9,6 +9,7 @@ signal new_pickup(pickup_name: String, selected_pickups: PackedInt32Array, is_re
 @onready var button_reset:Button = %ButtonClear
 @onready var button_save:Button = %ButtonOk
 
+var _is_all_disabled:bool
 var _current_pickup_name:String
 var _current_save_callback:Callable
 
@@ -17,15 +18,32 @@ func _ready() -> void:
 	fold()
 	button_reset.pressed.connect(_on_reset_pickup)
 	button_save.pressed.connect(_on_save_pickup)
-	button_reset.disabled = true  # Don't allow saving until there's a pickup
-	button_save.disabled = true  # Don't allow saving until there's a pickup
+	_disable_all_controls()
+
+
+func _disable_all_controls() -> void:
+	_is_all_disabled = true
+	
+	button_reset.disabled = true
+	button_save.disabled = true
 	remove_slider.disabled = true
+	for i in range(item_list.item_count):
+		item_list.set_item_disabled(i, true)
 
 
-func _on_new_pickup(pickup_name: String, selected_pickups: PackedInt32Array, is_removing: bool, save_callback: Callable) -> void:
+func _enable_all_controls() -> void:
+	_is_all_disabled = false
+	
 	button_reset.disabled = false
 	button_save.disabled = false
 	remove_slider.disabled = false
+	for i in range(item_list.item_count):
+		item_list.set_item_disabled(i, false)
+
+
+func _on_new_pickup(pickup_name: String, selected_pickups: PackedInt32Array, is_removing: bool, save_callback: Callable) -> void:
+	if _is_all_disabled:
+		_enable_all_controls()
 	
 	# TODO auto-save previous pickup?
 	
