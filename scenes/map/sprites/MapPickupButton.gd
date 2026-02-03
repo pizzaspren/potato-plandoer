@@ -1,10 +1,12 @@
 extends TextureButton
 class_name PickupButton
 
-var _panel : FoldableContainer
+var _panel : PickupPanel
 
 @export var icon_size = 15.0
-var _pos: Vector2 = Vector2(0.0, 0.0)
+var _pos:Vector2 = Vector2(0.0, 0.0)
+var _selected_pickups:PackedInt32Array = []
+var _is_removing:bool = false
 
 
 func _init(n: String = "Default", icon_resource: String = "", pos: Dictionary = {}) -> void:
@@ -31,4 +33,16 @@ func _on_pressed() -> void:
 		_panel = get_tree().get_nodes_in_group("PanelGroup")[0]
 	if _panel.folded:
 		_panel.expand()
-	_panel.title = name.replace("_", ".")
+	_panel.emit_signal("new_pickup",
+		name,
+		_selected_pickups,
+		_is_removing,
+		_on_save_from_panel
+	)
+
+
+func _on_save_from_panel(pickup_name: String, selected_pickups: PackedInt32Array, is_removing: bool):
+	if pickup_name != name:
+		return  # Not for this node
+	_selected_pickups = selected_pickups
+	_is_removing = is_removing

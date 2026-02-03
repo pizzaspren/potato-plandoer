@@ -17,13 +17,12 @@ func _ready() -> void:
 
 
 func _create_icons() -> void:
-	var GetIconResource = load("res://scripts/IconManager/GetIconResource.gd")
 	var icon_data = _read_json_icons()
 	for icon in icon_data:
 		if _blacklisted_icons.has(icon[1]):
 			continue
 		var sprite = PickupButton.new(icon[0], GetIconResource.get_icon_resource(icon[1]), icon[2])
-		add_child(sprite)
+		add_child(sprite, true)  # Force shops with multiple positions to be named (e.g. OpherShop, OpherShop2...)
 		sprite.set_owner(get_tree().get_edited_scene_root())
 
 

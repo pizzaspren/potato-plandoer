@@ -1,3 +1,5 @@
+class_name GetIconResource
+
 # Icon type
 enum IconType {
 	Keystone = 0,
@@ -91,37 +93,44 @@ enum IconType {
 	Wisp = 117,
 }
 
+static var Icon_Resource_Dict : Dictionary = {
+	IconType.Keystone: "res://assets/icons/pickups/resource/Keystone.png",
+	IconType.Eyestone: "res://assets/icons/pickups/resource/Eyestone.png",
+	IconType.EnergyFragment: "res://assets/icons/pickups/resource/Energy.png",
+	IconType.HealthFragment: "res://assets/icons/pickups/resource/Health.png",
+	IconType.Experience: "res://assets/icons/pickups/resource/SpiritLight.png",
+	IconType.Ore: "res://assets/icons/pickups/resource/Ore.png",
+	IconType.SpiritShard: "res://assets/icons/pickups/Shard.png",
+	IconType.Seed: "res://assets/icons/pickups/Seed.png",
+	IconType.Wisp: "res://assets/icons/pickups/Wisp.png",
+	IconType.ShardSlotUpgrade: "res://assets/icons/pickups/resource/ShardSlot.png",
+	IconType.Teleporter: "res://assets/icons/Teleporter.png",
+	IconType.AbilityPedestal: "res://assets/icons/pickups/SkillTree.png",
+	IconType.KeystoneDoorTwo: "res://assets/icons/DoorKeystone2.png",
+	IconType.KeystoneDoorFour: "res://assets/icons/DoorKeystone4.png",
+	IconType.RaceStart: "res://assets/icons/trials/RaceStart.png",
+	IconType.RaceEnd: "res://assets/icons/trials/RaceFinish.png",
+	IconType.Shrine: "res://assets/icons/trials/Shrine.png",
+	IconType.CreepHeart: "res://assets/icons/WillowHeart.png",
+	IconType.QuestItem: "res://assets/icons/pickups/QuestReward.png",
+	IconType.Moki: "res://assets/icons/npc/Moki.png",
+	IconType.MokiBrave: "res://assets/icons/npc/Moki.png",
+	IconType.MokiAdventurer: "res://assets/icons/npc/Moki.png",
+	IconType.MokiArtist: "res://assets/icons/npc/Moki.png",
+	IconType.MokiDarkness: "res://assets/icons/npc/Moki.png",
+	IconType.MokiFashionable: "res://assets/icons/npc/Moki.png",
+	IconType.MokiFisherman: "res://assets/icons/npc/Moki.png",
+	IconType.MokiFrozen: "res://assets/icons/npc/Moki.png",
+	IconType.MokiKwolokAmulet: "res://assets/icons/npc/Moki.png",
+	IconType.MokiSpyglass: "res://assets/icons/npc/Moki.png",
+	IconType.Mapmaker: "res://assets/icons/npc/Lupo.png",
+	IconType.Gardener: "res://assets/icons/npc/Veral.png",
+	IconType.Builder: "res://assets/icons/npc/Grom.png",
+	IconType.Treekeeper: "res://assets/icons/npc/Kii.png",
+	IconType.Weaponmaster: "res://assets/icons/npc/Opher.png",
+	IconType.Shardtrader: "res://assets/icons/npc/Twillen.png"
+}
+
 
 static func get_icon_resource(icon_id: int) -> String:
-	match icon_id:
-		IconType.Keystone: return "res://assets/icons/pickups/resource/Keystone.png"
-		IconType.Eyestone: return "res://assets/icons/pickups/resource/Eyestone.png"
-		IconType.EnergyFragment: return "res://assets/icons/pickups/resource/Energy.png"
-		IconType.HealthFragment: return "res://assets/icons/pickups/resource/Health.png"
-		IconType.Experience: return "res://assets/icons/pickups/resource/SpiritLight.png"
-		IconType.Ore: return "res://assets/icons/pickups/resource/Ore.png"
-		IconType.SpiritShard: return "res://assets/icons/pickups/Shard.png"
-		IconType.Seed: return "res://assets/icons/pickups/Seed.png"
-		IconType.Wisp: return "res://assets/icons/pickups/Wisp.png"
-		IconType.ShardSlotUpgrade: return "res://assets/icons/pickups/resource/ShardSlot.png"
-		IconType.Teleporter: return "res://assets/icons/Teleporter.png"
-		IconType.AbilityPedestal: return "res://assets/icons/pickups/SkillTree.png"
-		IconType.KeystoneDoorTwo: return "res://assets/icons/DoorKeystone2.png"
-		IconType.KeystoneDoorFour: return "res://assets/icons/DoorKeystone4.png"
-		IconType.RaceStart: return "res://assets/icons/trials/RaceStart.png"
-		IconType.RaceEnd: return "res://assets/icons/trials/RaceFinish.png"
-		IconType.Shrine: return "res://assets/icons/trials/Shrine.png"
-		IconType.CreepHeart: return "res://assets/icons/WillowHeart.png"
-		IconType.QuestItem: return "res://assets/icons/pickups/QuestReward.png"
-		# All the mokis
-		IconType.Moki, IconType.MokiBrave, IconType.MokiAdventurer, IconType.MokiArtist, IconType.MokiDarkness, IconType.MokiFashionable, IconType.MokiFisherman, IconType.MokiFrozen, IconType.MokiKwolokAmulet, IconType.MokiSpyglass: return "res://assets/npc/Moki.png"
-		# Shops
-		IconType.Mapmaker: return "res://assets/icons/npc/Lupo.png"
-		IconType.Gardener: return "res://assets/icons/npc/Veral.png"
-		IconType.Builder: return "res://assets/icons/npc/Grom.png"
-		IconType.Treekeeper: return "res://assets/icons/npc/Kii.png"
-		IconType.Weaponmaster: return "res://assets/icons/npc/Opher.png"
-		IconType.Shardtrader: return "res://assets/icons/npc/Twillen.png"
-		_:
-			print("Unsupported icon identifier \"%d\" - \"%s\"" % [icon_id, IconType.find_key(icon_id)])
-			return "res://assets/icons/Unknown.png"
+	return Icon_Resource_Dict.get(icon_id, "res://assets/icons/Unknown.png")
