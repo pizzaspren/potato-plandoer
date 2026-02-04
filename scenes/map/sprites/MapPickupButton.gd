@@ -1,6 +1,9 @@
 extends TextureButton
 class_name PickupButton
 
+static var FADED_MODULATION:Color = Color(1, 1, 1, 0.4)
+static var NORMAL_MODULATION:Color = Color.WHITE
+
 var _panel : PickupPanel
 
 @export var icon_size = 15.0
@@ -21,6 +24,8 @@ func _init(n: String = "Default", icon_resource: String = "", pos: Dictionary = 
 		scale = Vector2(1, -1)
 		stretch_mode = TextureButton.STRETCH_SCALE
 		texture_normal = load(icon_resource)
+	if _selected_pickups.is_empty():
+		modulate = FADED_MODULATION
 
 
 # Called when the node enters the scene tree for the first time.
@@ -39,3 +44,8 @@ func _on_save_from_panel(pickup_name: String, selected_pickups: PackedInt32Array
 		return  # Not for this node
 	_selected_pickups = selected_pickups
 	_is_removing = is_removing
+	
+	if _selected_pickups.is_empty():
+		modulate = FADED_MODULATION  # Fade out icon if it's empty
+	else:
+		modulate = NORMAL_MODULATION

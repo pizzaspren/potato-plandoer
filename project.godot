@@ -24,6 +24,12 @@ naming/script_name_casing=1
 
 PanelGroup=""
 
+[importer_defaults]
+
+texture={
+&"compress/mode": 1
+}
+
 [physics]
 
 3d/physics_engine="Jolt Physics"
