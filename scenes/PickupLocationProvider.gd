@@ -47,3 +47,6 @@ func location_as_condition_v4(location_name:String) -> String:
 	
 	var location_condition = "%d|%d%s%d" % [ubergroup, uberid, operator, value]
 	return location_condition
+	
+func location_as_condition_v5(location_name:String) -> String:
+	return "on %s" % location_name

@@ -6,6 +6,7 @@
 [ext_resource type="Script" uid="uid://ctpgarj5i6iit" path="res://scenes/PickupLocationProvider.gd" id="3_c01mt"]
 [ext_resource type="Script" uid="uid://c7snngiytirj0" path="res://scenes/export/ExportV4.gd" id="4_rarhs"]
 [ext_resource type="Script" uid="uid://cr401ntxpk6bp" path="res://scenes/PickupDataProvider.gd" id="5_vcsgt"]
+[ext_resource type="Script" uid="uid://baj1qxcr56ox0" path="res://scenes/ExportV5.gd" id="7_nxtc6"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_0bbpv"]
 line_spacing = 1.0
@@ -83,7 +84,7 @@ theme_override_constants/separation = 4
 [node name="Version label" type="Label" parent="Plando Controls/HBoxContainer" unique_id=137593519]
 layout_mode = 2
 text = "Pizza's Potato Plandoer
-Version alpha-0.0.1"
+Version alpha-0.0.2"
 label_settings = SubResource("LabelSettings_0bbpv")
 horizontal_alignment = 2
 vertical_alignment = 2
@@ -98,5 +99,7 @@ script = ExtResource("4_rarhs")
 layout_mode = 2
 theme_override_styles/normal = SubResource("StyleBoxFlat_0bbpv")
 text = "Export (v5)"
+script = ExtResource("7_nxtc6")
 
 [connection signal="pressed" from="Plando Controls/HBoxContainer/Export_v4" to="Plando Controls/HBoxContainer/Export_v4" method="_on_pressed"]
+[connection signal="pressed" from="Plando Controls/HBoxContainer/Export_v5" to="Plando Controls/HBoxContainer/Export_v5" method="_on_pressed"]
