@@ -76,6 +76,7 @@ offset_left = 4.0
 offset_top = 4.0
 offset_right = 296.0
 offset_bottom = 644.0
+size_flags_vertical = 3
 theme_override_styles/title_panel = SubResource("StyleBoxFlat_fvdpa")
 theme_override_styles/title_hover_panel = SubResource("StyleBoxFlat_debyu")
 theme_override_styles/title_collapsed_panel = SubResource("StyleBoxFlat_olo6u")

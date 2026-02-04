@@ -6,7 +6,7 @@
 [ext_resource type="Script" uid="uid://ctpgarj5i6iit" path="res://scenes/PickupLocationProvider.gd" id="3_c01mt"]
 [ext_resource type="Script" uid="uid://c7snngiytirj0" path="res://scenes/export/ExportV4.gd" id="4_rarhs"]
 [ext_resource type="Script" uid="uid://cr401ntxpk6bp" path="res://scenes/PickupDataProvider.gd" id="5_vcsgt"]
-[ext_resource type="Script" uid="uid://baj1qxcr56ox0" path="res://scenes/ExportV5.gd" id="7_nxtc6"]
+[ext_resource type="Script" uid="uid://baj1qxcr56ox0" path="res://scenes/export/ExportV5.gd" id="7_nxtc6"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_0bbpv"]
 line_spacing = 1.0
@@ -84,7 +84,7 @@ theme_override_constants/separation = 4
 [node name="Version label" type="Label" parent="Plando Controls/HBoxContainer" unique_id=137593519]
 layout_mode = 2
 text = "Pizza's Potato Plandoer
-Version alpha-0.0.2"
+Version alpha-0.0.4"
 label_settings = SubResource("LabelSettings_0bbpv")
 horizontal_alignment = 2
 vertical_alignment = 2

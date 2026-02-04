@@ -37,7 +37,7 @@ func _on_pressed() -> void:
 				pickup_uberid
 			])
 	
-	print("Temp export for v4:")
-	for line in output:
-		print(line)
-		
+	var contents = "\n".join(output)
+	var filename = "ppp_%s.wotwr" % Time.get_datetime_string_from_system()
+	JavaScriptBridge.download_buffer(contents.to_utf8_buffer(), filename, "text/plain")
+	

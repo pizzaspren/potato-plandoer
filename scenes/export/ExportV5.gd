@@ -37,7 +37,6 @@ func _on_pressed() -> void:
 				pickup_call = "remove_%s" % pickup_call
 			output.append("%s %s" % [location_condition, pickup_call])
 	
-	print("Temp export for v5:")
-	for line in output:
-		print(line)
-		
+	var contents = "\n".join(output)
+	var filename = "ppp_%s.wotws" % Time.get_datetime_string_from_system()
+	JavaScriptBridge.download_buffer(contents.to_utf8_buffer(), filename, "text/plain")
