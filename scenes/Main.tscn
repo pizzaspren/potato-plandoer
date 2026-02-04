@@ -3,10 +3,28 @@
 [ext_resource type="PackedScene" uid="uid://ccs75bygv2cx6" path="res://scenes/map/WotwMap.tscn" id="1_elqb8"]
 [ext_resource type="Script" uid="uid://imy6sqiq04ty" path="res://scenes/Main.gd" id="1_rvslj"]
 [ext_resource type="PackedScene" uid="uid://bj4p54jw4djx7" path="res://scenes/panel/PickupPanel.tscn" id="3_0bbpv"]
+[ext_resource type="Script" uid="uid://ctpgarj5i6iit" path="res://scenes/PickupLocationProvider.gd" id="3_c01mt"]
+[ext_resource type="Script" uid="uid://c7snngiytirj0" path="res://scenes/export/ExportV4.gd" id="4_rarhs"]
+[ext_resource type="Script" uid="uid://cr401ntxpk6bp" path="res://scenes/PickupDataProvider.gd" id="5_vcsgt"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_0bbpv"]
 line_spacing = 1.0
 font_size = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0bbpv"]
+content_margin_left = 8.0
+content_margin_right = 8.0
+bg_color = Color(0, 0.39215687, 0, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0, 0.5882353, 0, 1)
+border_blend = true
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
 
 [node name="Main" type="Control" unique_id=1364075408]
 layout_mode = 3
@@ -16,6 +34,13 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_rvslj")
+
+[node name="PickupDataProvider" type="Node" parent="." unique_id=693709959 groups=["PickupDataProvider"]]
+unique_name_in_owner = true
+script = ExtResource("5_vcsgt")
+
+[node name="PickupLocationProvider" type="Node" parent="." unique_id=312414643 groups=["PickupLocationProvider"]]
+script = ExtResource("3_c01mt")
 
 [node name="Background" type="ColorRect" parent="." unique_id=1022705432]
 layout_mode = 1
@@ -37,19 +62,41 @@ offset_top = 0.0
 offset_right = 292.0
 offset_bottom = 640.0
 
-[node name="Version label" type="Label" parent="." unique_id=137593519]
+[node name="Plando Controls" type="MarginContainer" parent="." unique_id=1085754730]
 layout_mode = 1
 anchors_preset = 3
 anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -148.0
-offset_top = -23.0
+offset_left = -284.0
+offset_top = -44.0
 grow_horizontal = 0
 grow_vertical = 0
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Plando Controls" unique_id=634870230]
+layout_mode = 2
+theme_override_constants/separation = 4
+
+[node name="Version label" type="Label" parent="Plando Controls/HBoxContainer" unique_id=137593519]
+layout_mode = 2
 text = "Pizza's Potato Plandoer
 Version alpha-0.0.1"
 label_settings = SubResource("LabelSettings_0bbpv")
 horizontal_alignment = 2
 vertical_alignment = 2
+
+[node name="Export_v4" type="Button" parent="Plando Controls/HBoxContainer" unique_id=1419841716]
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_0bbpv")
+text = "Export (v4)"
+script = ExtResource("4_rarhs")
+
+[node name="Export_v5" type="Button" parent="Plando Controls/HBoxContainer" unique_id=682493104]
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_0bbpv")
+text = "Export (v5)"
+
+[connection signal="pressed" from="Plando Controls/HBoxContainer/Export_v4" to="Plando Controls/HBoxContainer/Export_v4" method="_on_pressed"]

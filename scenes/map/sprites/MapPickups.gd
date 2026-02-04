@@ -5,31 +5,20 @@ extends Node2D
 @export var icon_size = 15.0
 static var _blacklisted_icons = [77, 78]  # Redundant race icons
 
+var _pickup_location_provider:PickupLocationProvider
+
 
 func _ready() -> void:
-	# Want this reloaded every time, in case the logic map changes
+	_pickup_location_provider = get_tree().get_first_node_in_group("PickupLocationProvider") as PickupLocationProvider
 	_create_icons()
 
 
 func _create_icons() -> void:
-	var icon_data = _read_json_icons()
-	for icon in icon_data:
-		if _blacklisted_icons.has(icon[1]):
-			continue
-		var sprite = PickupButton.new(icon[0], GetIconResource.get_icon_resource(icon[1]), icon[2])
-		add_child(sprite, true)  # Force shops with multiple positions to be named (e.g. OpherShop, OpherShop2...)
-		sprite.set_owner(get_tree().get_edited_scene_root())
-
-
-func _read_json_icons() -> Array:
-	# TODO: Read from api
-	var data = JSON.parse_string(FileAccess.get_file_as_string(map_icons_json))
-	var trimmed_data = []
-	for idata:Dictionary in data["mapIcons"]:
-		for valid_position in idata["positions"]:
-			trimmed_data.append([
-				idata["label"],
-				int(idata["icon"]),
-				valid_position
-			])
-	return trimmed_data
+	for location in _pickup_location_provider.locations_by_name.values():
+		if _blacklisted_icons.has(int(location["icon"])) or location["label"].ends_with("Shop"):
+			continue  # FIXME: Shops.
+		for loc_pos in location["positions"]:
+			var sprite = PickupButton.new(location["label"], GetIconResource.get_icon_resource(int(location["icon"])), loc_pos)
+			add_child(sprite)
+			sprite.set_owner(get_tree().get_edited_scene_root())
+			sprite.add_to_group("PickupLocations")
