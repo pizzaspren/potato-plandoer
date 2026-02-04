@@ -1,7 +1,5 @@
 extends Node2D
 
-@export var map_icons_json := String("res://data/map-icons.json")  # TODO: Fetch
-
 @export var icon_size = 15.0
 static var _blacklisted_icons = [77, 78]  # Redundant race icons
 

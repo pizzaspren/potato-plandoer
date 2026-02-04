@@ -36,6 +36,8 @@ func _on_pressed() -> void:
 				pickup_ubergroup,
 				pickup_uberid
 			])
-		
-	print(output)
+	
+	print("Temp export for v4:")
+	for line in output:
+		print(line)
 		

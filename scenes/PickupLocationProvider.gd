@@ -23,13 +23,13 @@ static var UberstateComparator = {
 }
 
 
-static var _locations_file:String = "res://data/map-icons.json"
+static var _locations_file:String = "res://data/map-icons.json"  # TODO: Fetch from API
 var _locations_raw:Array
 var locations_by_name:Dictionary
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	var data = JSON.parse_string(FileAccess.get_file_as_string(_locations_file))
+	var data = JSON.parse_string(FileAccess.get_file_as_string(_locations_file))  # TODO: Fetch from API
 	_locations_raw = data["mapIcons"]
 	for location in _locations_raw:
 		locations_by_name[location["label"]] = location
