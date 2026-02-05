@@ -281,7 +281,7 @@ size_flags_vertical = 8
 [node name="Version label" type="Label" parent="PlandoControls/VBoxContainer" unique_id=137593519]
 layout_mode = 2
 text = "Pizza's Potato Plandoer
-Version alpha-0.0.6"
+Version alpha-0.0.7"
 label_settings = SubResource("LabelSettings_0bbpv")
 horizontal_alignment = 2
 vertical_alignment = 2
