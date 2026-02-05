@@ -4,6 +4,7 @@
 [ext_resource type="Script" uid="uid://dhxtpgdxelbxf" path="res://scenes/map/sprites/MapPickups.gd" id="2_d0ega"]
 [ext_resource type="Script" uid="uid://bto5fg06kcv5t" path="res://scenes/map/tiles/MapTiles.gd" id="2_i0msf"]
 [ext_resource type="Texture2D" uid="uid://bl7f2j8icbxxf" path="res://assets/tiles/tile-0_4.png" id="2_jj1no"]
+[ext_resource type="Resource" uid="uid://ptqjwngnq5w" path="res://assets/icon_provider.tres" id="3_d0ega"]
 [ext_resource type="Texture2D" uid="uid://daogx24ashl7f" path="res://assets/tiles/tile-0_5.png" id="3_sh5fo"]
 [ext_resource type="Texture2D" uid="uid://im4q7wmhg2p3" path="res://assets/tiles/tile-1_4.png" id="4_77whi"]
 [ext_resource type="Texture2D" uid="uid://v7m3d1kfc4rk" path="res://assets/tiles/tile-1_5.png" id="5_juk1a"]
@@ -227,6 +228,7 @@ metadata/_edit_lock_ = true
 
 [node name="Pickups" type="Node2D" parent="Origin/InGameOrigin/Icons" unique_id=703092305]
 script = ExtResource("2_d0ega")
+icon_provider = ExtResource("3_d0ega")
 metadata/_edit_lock_ = true
 
 [node name="Tiles" type="Node2D" parent="Origin/InGameOrigin" unique_id=1826790488]

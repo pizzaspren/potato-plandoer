@@ -11,7 +11,7 @@ var _selected_pickups:PackedInt32Array = []
 var _is_removing:bool = false
 
 # Created anew every run
-func _init(n: String, icon_resource: String, pos: Dictionary) -> void:
+func _init(n: String, icon_resource: Texture2D, pos: Dictionary) -> void:
 	name = n
 	# TextureButtons are anchored at top left because of Control inheritance
 	position = Vector2(pos["x"] - icon_size / 3, pos["y"] + icon_size / 2)
@@ -19,7 +19,7 @@ func _init(n: String, icon_resource: String, pos: Dictionary) -> void:
 	size = Vector2(icon_size, icon_size)
 	scale = Vector2(1, -1)
 	stretch_mode = TextureButton.STRETCH_SCALE
-	texture_normal = load(icon_resource)
+	texture_normal = icon_resource
 	
 	if _selected_pickups.is_empty():
 		modulate = FADED_MODULATION

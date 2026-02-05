@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://bj4p54jw4djx7"]
 
-[ext_resource type="Script" uid="uid://32yogalb1afk" path="res://scenes/panel/PickupPanel.gd" id="1_oqxcs"]
-[ext_resource type="Script" uid="uid://cfsj5cmqyylss" path="res://scenes/panel/PanelItemSelection.gd" id="2_we5hp"]
+[ext_resource type="Script" uid="uid://32yogalb1afk" path="res://scenes/pickup_panel/PickupPanel.gd" id="1_oqxcs"]
+[ext_resource type="Script" uid="uid://cfsj5cmqyylss" path="res://scenes/pickup_panel/PanelItemSelection.gd" id="2_we5hp"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fvdpa"]
 bg_color = Color(0, 0, 0, 1)

@@ -1,0 +1,352 @@
+[gd_scene format=3 uid="uid://h0updaqid4o7"]
+
+[ext_resource type="Script" uid="uid://cvr2lfsjinecc" path="res://scenes/io_controls/IoControls.gd" id="1_2tg7s"]
+[ext_resource type="Texture2D" uid="uid://ckk8aum50oau0" path="res://assets/misc/copy.png" id="2_5j3iq"]
+[ext_resource type="Texture2D" uid="uid://bcxlaovs2gf4o" path="res://assets/misc/save.png" id="3_bvmi5"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_s4r64"]
+line_spacing = 1.0
+font_size = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gjh36"]
+content_margin_left = 2.0
+content_margin_top = 2.0
+content_margin_right = 2.0
+content_margin_bottom = 2.0
+bg_color = Color(0, 0.39215687, 0.78431374, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0, 0.627451, 1, 1)
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_om67x"]
+content_margin_left = 2.0
+content_margin_top = 2.0
+content_margin_right = 2.0
+content_margin_bottom = 2.0
+bg_color = Color(0, 0, 0.78431374, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0, 0.627451, 1, 1)
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xgbvo"]
+content_margin_left = 2.0
+content_margin_top = 2.0
+content_margin_right = 2.0
+content_margin_bottom = 2.0
+bg_color = Color(0, 0.19607843, 0.78431374, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0, 0.627451, 1, 1)
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_osg0p"]
+content_margin_left = 2.0
+content_margin_top = 2.0
+content_margin_right = 2.0
+content_margin_bottom = 2.0
+bg_color = Color(0, 0.39215687, 0, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0, 0.5882353, 0, 1)
+border_blend = true
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_70ba0"]
+content_margin_left = 2.0
+content_margin_top = 2.0
+content_margin_right = 2.0
+content_margin_bottom = 2.0
+bg_color = Color(0, 0.3137255, 0, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0, 0.5882353, 0, 1)
+border_blend = true
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_t0luw"]
+content_margin_left = 2.0
+content_margin_top = 2.0
+content_margin_right = 2.0
+content_margin_bottom = 2.0
+bg_color = Color(0, 0.19607843, 0, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0, 0.5882353, 0, 1)
+border_blend = true
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fudgi"]
+content_margin_left = 2.0
+content_margin_top = 2.0
+content_margin_right = 2.0
+content_margin_bottom = 2.0
+bg_color = Color(0, 0.39215687, 0.78431374, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0, 0.627451, 1, 1)
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_chxka"]
+content_margin_left = 2.0
+content_margin_top = 2.0
+content_margin_right = 2.0
+content_margin_bottom = 2.0
+bg_color = Color(0, 0, 0.78431374, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0, 0.627451, 1, 1)
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hmtc0"]
+content_margin_left = 2.0
+content_margin_top = 2.0
+content_margin_right = 2.0
+content_margin_bottom = 2.0
+bg_color = Color(0, 0.19607843, 0.78431374, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0, 0.627451, 1, 1)
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_he305"]
+content_margin_left = 2.0
+content_margin_top = 2.0
+content_margin_right = 2.0
+content_margin_bottom = 2.0
+bg_color = Color(0, 0.39215687, 0, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0, 0.5882353, 0, 1)
+border_blend = true
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tkopc"]
+content_margin_left = 2.0
+content_margin_top = 2.0
+content_margin_right = 2.0
+content_margin_bottom = 2.0
+bg_color = Color(0, 0.3137255, 0, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0, 0.5882353, 0, 1)
+border_blend = true
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ejiue"]
+content_margin_left = 2.0
+content_margin_top = 2.0
+content_margin_right = 2.0
+content_margin_bottom = 2.0
+bg_color = Color(0, 0.19607843, 0, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0, 0.5882353, 0, 1)
+border_blend = true
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yxgwj"]
+bg_color = Color(0, 0, 0, 0.5372549)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_blend = true
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kdpwx"]
+bg_color = Color(0.2509804, 0.25882354, 0.2509804, 1)
+
+[node name="IoControls" type="MarginContainer" unique_id=927959420]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -284.0
+offset_top = -44.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
+script = ExtResource("1_2tg7s")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1300094723]
+layout_mode = 2
+size_flags_vertical = 8
+
+[node name="Version label" type="Label" parent="VBoxContainer" unique_id=1462801696]
+layout_mode = 2
+text = "Pizza's Potato Plandoer
+Version alpha-0.0.7"
+label_settings = SubResource("LabelSettings_s4r64")
+horizontal_alignment = 2
+vertical_alignment = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer" unique_id=635881041]
+layout_mode = 2
+
+[node name="HBoxContainer_V4" type="HBoxContainer" parent="VBoxContainer/VBoxContainer" unique_id=528856734]
+layout_mode = 2
+size_flags_horizontal = 8
+
+[node name="LabelV4" type="Label" parent="VBoxContainer/VBoxContainer/HBoxContainer_V4" unique_id=790845285]
+layout_mode = 2
+text = "v4"
+
+[node name="ClipboardV4" type="Button" parent="VBoxContainer/VBoxContainer/HBoxContainer_V4" unique_id=2106680790]
+custom_minimum_size = Vector2(45, 45)
+layout_mode = 2
+tooltip_text = "Copy as v4 snippet"
+theme_override_colors/icon_normal_color = Color(0, 0, 0, 1)
+theme_override_colors/icon_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/icon_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/icon_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/icon_hover_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/icon_disabled_color = Color(0, 0, 0, 0.4)
+theme_override_styles/normal = SubResource("StyleBoxFlat_gjh36")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_om67x")
+theme_override_styles/hover = SubResource("StyleBoxFlat_xgbvo")
+icon = ExtResource("2_5j3iq")
+icon_alignment = 1
+expand_icon = true
+
+[node name="ExportV4" type="Button" parent="VBoxContainer/VBoxContainer/HBoxContainer_V4" unique_id=1929647162]
+custom_minimum_size = Vector2(45, 45)
+layout_mode = 2
+tooltip_text = "Save v4 Plando to file"
+theme_override_colors/icon_normal_color = Color(0, 0, 0, 1)
+theme_override_colors/icon_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/icon_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/icon_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/icon_hover_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/icon_disabled_color = Color(0, 0, 0, 0.4)
+theme_override_styles/normal = SubResource("StyleBoxFlat_osg0p")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_70ba0")
+theme_override_styles/hover = SubResource("StyleBoxFlat_t0luw")
+icon = ExtResource("3_bvmi5")
+icon_alignment = 1
+expand_icon = true
+
+[node name="HBoxContainer_V5" type="HBoxContainer" parent="VBoxContainer/VBoxContainer" unique_id=869659710]
+layout_direction = 2
+layout_mode = 2
+size_flags_horizontal = 8
+
+[node name="LabelV5" type="Label" parent="VBoxContainer/VBoxContainer/HBoxContainer_V5" unique_id=164457952]
+layout_mode = 2
+text = "v5"
+
+[node name="ClipboardV5" type="Button" parent="VBoxContainer/VBoxContainer/HBoxContainer_V5" unique_id=1131732443]
+custom_minimum_size = Vector2(45, 45)
+layout_mode = 2
+tooltip_text = "Copy as v5 snippet"
+theme_override_colors/icon_normal_color = Color(0, 0, 0, 1)
+theme_override_colors/icon_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/icon_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/icon_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/icon_hover_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/icon_disabled_color = Color(0, 0, 0, 0.4)
+theme_override_styles/normal = SubResource("StyleBoxFlat_fudgi")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_chxka")
+theme_override_styles/hover = SubResource("StyleBoxFlat_hmtc0")
+icon = ExtResource("2_5j3iq")
+icon_alignment = 1
+expand_icon = true
+
+[node name="ExportV5" type="Button" parent="VBoxContainer/VBoxContainer/HBoxContainer_V5" unique_id=2038679178]
+custom_minimum_size = Vector2(45, 45)
+layout_mode = 2
+tooltip_text = "Save v5 Plando to file"
+theme_override_colors/icon_normal_color = Color(0, 0, 0, 1)
+theme_override_colors/icon_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/icon_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/icon_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/icon_hover_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/icon_disabled_color = Color(0, 0, 0, 0.4)
+theme_override_styles/normal = SubResource("StyleBoxFlat_he305")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_tkopc")
+theme_override_styles/hover = SubResource("StyleBoxFlat_ejiue")
+icon = ExtResource("3_bvmi5")
+icon_alignment = 1
+expand_icon = true
+
+[node name="PlandoName" type="LineEdit" parent="VBoxContainer" unique_id=409751125]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_yxgwj")
+theme_override_styles/focus = SubResource("StyleBoxFlat_kdpwx")
+text = "MyPlando"
+placeholder_text = "YourAwesomePlandoNameGoesHere"
+alignment = 2
+context_menu_enabled = false
+emoji_menu_enabled = false
+shortcut_keys_enabled = false
+middle_mouse_paste_enabled = false
+drag_and_drop_selection_enabled = false
+virtual_keyboard_enabled = false
+
+[connection signal="pressed" from="VBoxContainer/VBoxContainer/HBoxContainer_V4/ClipboardV4" to="." method="_clipboard_v4"]
+[connection signal="pressed" from="VBoxContainer/VBoxContainer/HBoxContainer_V4/ExportV4" to="." method="_export_v4"]
+[connection signal="pressed" from="VBoxContainer/VBoxContainer/HBoxContainer_V5/ClipboardV5" to="." method="_clipboard_v5"]
+[connection signal="pressed" from="VBoxContainer/VBoxContainer/HBoxContainer_V5/ExportV5" to="." method="_export_v5"]

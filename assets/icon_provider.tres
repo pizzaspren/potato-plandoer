@@ -1,0 +1,61 @@
+[gd_resource type="Resource" script_class="IconProvider" format=3 uid="uid://ptqjwngnq5w"]
+
+[ext_resource type="Texture2D" uid="uid://gx0rg0po5svh" path="res://assets/icons/pickups/resource/Keystone.png" id="1_f2y4s"]
+[ext_resource type="Texture2D" uid="uid://dmmck6d4lb6xu" path="res://assets/icons/pickups/resource/Eyestone.png" id="2_5bq4p"]
+[ext_resource type="Texture2D" uid="uid://cfg02c0jsrxmb" path="res://assets/icons/pickups/SkillTree.png" id="3_v7uxv"]
+[ext_resource type="Texture2D" uid="uid://b0qcmnupuu3ph" path="res://assets/icons/pickups/resource/Energy.png" id="4_3rv0n"]
+[ext_resource type="Texture2D" uid="uid://0t1agqytv2x2" path="res://assets/icons/pickups/resource/Health.png" id="5_c6fbs"]
+[ext_resource type="Texture2D" uid="uid://cm2vq8hfc4s54" path="res://assets/icons/pickups/resource/SpiritLight.png" id="6_5x8hi"]
+[ext_resource type="Texture2D" uid="uid://cxpb68st0fhy0" path="res://assets/icons/pickups/resource/Ore.png" id="7_nydsv"]
+[ext_resource type="Texture2D" uid="uid://cb0a0ixs71hct" path="res://assets/icons/pickups/Shard.png" id="8_5bq4p"]
+[ext_resource type="Texture2D" uid="uid://cpx54xqof1i0e" path="res://assets/icons/pickups/Seed.png" id="8_j1hcj"]
+[ext_resource type="Texture2D" uid="uid://bsanyxa4f820q" path="res://assets/icons/pickups/Wisp.png" id="9_spdbt"]
+[ext_resource type="Texture2D" uid="uid://srs3a8drtxoo" path="res://assets/icons/pickups/resource/ShardSlot.png" id="10_11ojr"]
+[ext_resource type="Texture2D" uid="uid://odhph71ysaff" path="res://assets/icons/Teleporter.png" id="11_eix8s"]
+[ext_resource type="Texture2D" uid="uid://o0444guu2xax" path="res://assets/icons/walls/DoorKeystone2.png" id="13_l54pt"]
+[ext_resource type="Texture2D" uid="uid://bfleg0uqn0qxk" path="res://assets/icons/walls/DoorKeystone4.png" id="14_mtevb"]
+[ext_resource type="Texture2D" uid="uid://dxrn8filbo1d0" path="res://assets/icons/trials/RaceStart.png" id="15_rfx45"]
+[ext_resource type="Texture2D" uid="uid://v1qg0c58n4jv" path="res://assets/icons/trials/RaceFinish.png" id="16_li7cn"]
+[ext_resource type="Texture2D" uid="uid://deuc86w4h4b2h" path="res://assets/icons/trials/Shrine.png" id="17_nxmba"]
+[ext_resource type="Texture2D" uid="uid://rhvk0tpqojtb" path="res://assets/icons/WillowHeart.png" id="18_g1pra"]
+[ext_resource type="Texture2D" uid="uid://1j4qbqp0tuel" path="res://assets/icons/npc/Moki.png" id="19_6kg6f"]
+[ext_resource type="Texture2D" uid="uid://g206eo5iw2yd" path="res://assets/icons/npc/Lupo.png" id="20_3u2sx"]
+[ext_resource type="Texture2D" uid="uid://bkx8fwe1c1srl" path="res://assets/icons/npc/Tuley.png" id="21_xsvl3"]
+[ext_resource type="Texture2D" uid="uid://c6hxtky6smnbl" path="res://assets/icons/npc/Grom.png" id="22_lhw08"]
+[ext_resource type="Texture2D" uid="uid://d2ph1brh4lxra" path="res://assets/icons/npc/Kii.png" id="23_m2qji"]
+[ext_resource type="Texture2D" uid="uid://cgpmd1byabfvh" path="res://assets/icons/npc/Opher.png" id="24_hvhya"]
+[ext_resource type="Texture2D" uid="uid://buwlqgb8slew0" path="res://assets/icons/npc/Twillen.png" id="25_7upip"]
+[ext_resource type="Texture2D" uid="uid://t7yw57w5f1h7" path="res://assets/icons/pickups/QuestReward.png" id="26_spdbt"]
+[ext_resource type="Script" uid="uid://ppn81apy1apm" path="res://scripts/IconProvider.gd" id="27_spdbt"]
+
+[resource]
+script = ExtResource("27_spdbt")
+icon_map = Dictionary[int, Texture2D]({
+0: ExtResource("1_f2y4s"),
+8: ExtResource("14_mtevb"),
+10: ExtResource("3_v7uxv"),
+15: ExtResource("13_l54pt"),
+17: ExtResource("6_5x8hi"),
+24: ExtResource("8_5bq4p"),
+26: ExtResource("26_spdbt"),
+27: ExtResource("10_11ojr"),
+28: ExtResource("11_eix8s"),
+29: ExtResource("7_nydsv"),
+32: ExtResource("15_rfx45"),
+33: ExtResource("5_c6fbs"),
+34: ExtResource("4_3rv0n"),
+35: ExtResource("8_j1hcj"),
+36: ExtResource("16_li7cn"),
+37: ExtResource("2_5bq4p"),
+43: ExtResource("17_nxmba"),
+51: ExtResource("24_hvhya"),
+52: ExtResource("21_xsvl3"),
+53: ExtResource("20_3u2sx"),
+54: ExtResource("25_7upip"),
+56: ExtResource("23_m2qji"),
+57: ExtResource("22_lhw08"),
+60: ExtResource("18_g1pra"),
+63: ExtResource("19_6kg6f"),
+117: ExtResource("9_spdbt")
+})
+metadata/_custom_type_script = "uid://ppn81apy1apm"
