@@ -8,8 +8,16 @@ var _pickup_location_provider:PickupLocationProvider
 func _ready() -> void:
 	_pickup_data_provider = get_tree().get_first_node_in_group("PickupDataProvider") as PickupDataProvider
 	_pickup_location_provider = get_tree().get_first_node_in_group("PickupLocationProvider") as PickupLocationProvider
-	%ExportV4.pressed.connect(_export_v4)
-	%ExportV5.pressed.connect(_export_v5)
+
+
+func _clipboard_v4() -> void:
+	var body:String = _assignments_as_v4(_fetch_assignments())
+	DisplayServer.clipboard_set(body)
+
+
+func _clipboard_v5() -> void:
+	var body:String = _assignments_as_v5(_fetch_assignments())
+	DisplayServer.clipboard_set(body)
 
 
 func _export_v4() -> void:
