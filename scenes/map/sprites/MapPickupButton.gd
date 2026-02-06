@@ -4,11 +4,10 @@ class_name PickupButton
 static var FADED_MODULATION:Color = Color(1, 1, 1, 0.4)
 static var NORMAL_MODULATION:Color = Color.WHITE
 
-var _panel : PickupPanel
+var _panel:PickupPanel
 
 @export var icon_size = 15.0
-var _selected_pickups:PackedInt32Array = []
-var _is_removing:bool = false
+var _selected_pickups:PanelPickupModel = PanelPickupModel.new()
 
 # Created anew every run
 func _init(n: String, icon_resource: Texture2D, pos: Dictionary) -> void:
@@ -21,8 +20,9 @@ func _init(n: String, icon_resource: Texture2D, pos: Dictionary) -> void:
 	stretch_mode = TextureButton.STRETCH_SCALE
 	texture_normal = icon_resource
 	
-	if _selected_pickups.is_empty():
-		modulate = FADED_MODULATION
+	mouse_default_cursor_shape = Control.CURSOR_POINTING_HAND
+	
+	modulate = FADED_MODULATION
 
 
 func _ready() -> void:
@@ -32,16 +32,15 @@ func _ready() -> void:
 func _on_pressed() -> void:
 	if not _panel:
 		_panel = get_tree().get_first_node_in_group("PanelGroup")
-	_panel.new_pickup.emit(name, _selected_pickups, _is_removing, _on_save_from_panel)
+	_panel.open_panel_for_location.emit(name, _selected_pickups, _on_save_from_panel)
 
 
-func _on_save_from_panel(pickup_name: String, selected_pickups: PackedInt32Array, is_removing: bool):
+func _on_save_from_panel(pickup_name: String, selected_pickups: PanelPickupModel):
 	if pickup_name != name:
 		return  # Not for this node
 	_selected_pickups = selected_pickups
-	_is_removing = is_removing
 	
-	if _selected_pickups.is_empty():
+	if _selected_pickups.data.is_empty():
 		modulate = FADED_MODULATION  # Fade out icon if it's empty
 	else:
 		modulate = NORMAL_MODULATION

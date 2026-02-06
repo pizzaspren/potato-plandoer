@@ -1,67 +1,38 @@
 extends FoldableContainer
 class_name PickupPanel
 
-@warning_ignore("unused_signal")
-signal new_pickup(pickup_name: String, selected_pickups: PackedInt32Array, is_removing: bool, save_callback: Callable)
+signal open_panel_for_location(pickup_name: String, selected_pickups: Array[PanelPickupModel], is_removing: bool, save_callback: Callable)
 
-@onready var item_list:ItemList = %ItemList
-@onready var remove_slider:CheckButton = %RemoveSlider
+@onready var scroll:ScrollContainer = %ScrollContainer
+@onready var pickup_list_container:PickupListContainer = %PickupListContainer
 @onready var button_reset:Button = %ButtonClear
 @onready var button_save:Button = %ButtonOk
 
-var _is_all_disabled:bool
 var _current_pickup_name:String
 var _current_save_callback:Callable
 
-# Called when the node enters the scene tree for the first time.
+
 func _ready() -> void:
-	fold()
 	button_reset.pressed.connect(_on_reset_pickup)
 	button_save.pressed.connect(_on_save_pickup)
-	_disable_all_controls()
 
 
-func _disable_all_controls() -> void:
-	_is_all_disabled = true
-	
-	button_reset.disabled = true
-	button_save.disabled = true
-	remove_slider.disabled = true
-	for i in range(item_list.item_count):
-		item_list.set_item_disabled(i, true)
-
-
-func _enable_all_controls() -> void:
-	_is_all_disabled = false
-	
-	button_reset.disabled = false
-	button_save.disabled = false
-	remove_slider.disabled = false
-	for i in range(item_list.item_count):
-		item_list.set_item_disabled(i, false)
-
-
-func _on_new_pickup(pickup_name: String, selected_pickups: PackedInt32Array, is_removing: bool, save_callback: Callable) -> void:
-	if _is_all_disabled:
-		_enable_all_controls()
-	expand()
+func _on_open_panel_for_location(pickup_name: String, selected_pickups: PanelPickupModel, save_callback: Callable) -> void:
+	visible = true  # Starts hidden
+	expand()  # QoL?
 	
 	# TODO auto-save previous pickup?
 	
 	_current_pickup_name = pickup_name
 	title = pickup_name.replace("_", ".").rstrip("123456789")  # Hint at the top
-	item_list.deselect_all()  # Deselect everything
-	item_list.get_v_scroll_bar().value = 0
-	for sp:int in selected_pickups:  # Select only previously loaded
-		item_list.select(sp, false)
-	remove_slider.button_pressed = is_removing
+	#item_list.get_v_scroll_bar().value = 0
+	pickup_list_container.set_selected(selected_pickups)
 	_current_save_callback = save_callback
 
 
 func _on_reset_pickup() -> void:
-	item_list.deselect_all()
-	item_list.get_v_scroll_bar().value = 0  # Scroll to the top
-	remove_slider.button_pressed = false
+	scroll.get_v_scroll_bar().value = 0
+	pickup_list_container.reset_selections()
 	# TODO: Confirmation feedback
 
 
@@ -69,7 +40,7 @@ func _on_save_pickup() -> void:
 	if not _current_save_callback:
 		print("No pickup selected")
 		return
-	var selectedItems:PackedInt32Array = item_list.get_selected_items()
-	var is_removing:bool = remove_slider.button_pressed
-	_current_save_callback.call(_current_pickup_name, selectedItems, is_removing)
+	var panel_model = PanelPickupModel.new()
+	panel_model.data = pickup_list_container.get_selections()
+	_current_save_callback.call(_current_pickup_name, panel_model)
 	# TODO: Confirmation feedback

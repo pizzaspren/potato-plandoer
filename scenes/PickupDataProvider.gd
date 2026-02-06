@@ -6,7 +6,7 @@ var _pickups_raw:Array
 var pickups_by_id:Dictionary
 var pickup_mapping:Dictionary[int, int]
 
-# Called when the node enters the scene tree for the first time.
+
 func _ready() -> void:
 	var parsed_data = JSON.parse_string(FileAccess.get_file_as_string(_pickups_file))
 	_pickups_raw = parsed_data["pickups"]

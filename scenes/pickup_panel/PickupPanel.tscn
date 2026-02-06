@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://bj4p54jw4djx7"]
 
 [ext_resource type="Script" uid="uid://32yogalb1afk" path="res://scenes/pickup_panel/PickupPanel.gd" id="1_oqxcs"]
-[ext_resource type="Script" uid="uid://cfsj5cmqyylss" path="res://scenes/pickup_panel/PanelItemSelection.gd" id="2_we5hp"]
+[ext_resource type="Script" uid="uid://bunafcj1t10sj" path="res://scenes/pickup_panel/PickupListContainer.gd" id="3_b0tw2"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fvdpa"]
 bg_color = Color(0, 0, 0, 1)
@@ -71,6 +71,7 @@ corner_radius_bottom_right = 2
 corner_radius_bottom_left = 2
 
 [node name="PickupPanel" type="FoldableContainer" unique_id=1787131419 groups=["PanelGroup"]]
+visible = false
 z_index = 10
 offset_left = 4.0
 offset_top = 4.0
@@ -82,7 +83,6 @@ theme_override_styles/title_hover_panel = SubResource("StyleBoxFlat_debyu")
 theme_override_styles/title_collapsed_panel = SubResource("StyleBoxFlat_olo6u")
 theme_override_styles/title_collapsed_hover_panel = SubResource("StyleBoxFlat_chipg")
 theme_override_styles/panel = SubResource("StyleBoxFlat_vabh6")
-title = "Select any pickup"
 title_alignment = 1
 script = ExtResource("1_oqxcs")
 metadata/_edit_lock_ = true
@@ -99,24 +99,21 @@ theme_override_constants/margin_bottom = 4
 layout_mode = 2
 theme_override_constants/separation = 4
 
-[node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/VBoxContainer" unique_id=523260457]
+[node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/VBoxContainer" unique_id=318350389]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 3
+theme_override_constants/scrollbar_h_separation = 4
 
-[node name="ItemList" type="ItemList" parent="MarginContainer/VBoxContainer/ScrollContainer" unique_id=2029504810]
+[node name="PickupListContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/ScrollContainer" unique_id=1781153854]
 unique_name_in_owner = true
-clip_contents = false
 layout_mode = 2
 size_flags_horizontal = 3
-size_flags_vertical = 3
-select_mode = 2
-allow_reselect = true
-scroll_hint_mode = 1
-fixed_icon_size = Vector2i(20, 20)
-script = ExtResource("2_we5hp")
+script = ExtResource("3_b0tw2")
 
 [node name="RemoveSlider" type="CheckButton" parent="MarginContainer/VBoxContainer" unique_id=1163146887]
 unique_name_in_owner = true
+visible = false
 layout_mode = 2
 text = "Take away selected"
 
@@ -143,4 +140,4 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_nxrwm")
 theme_override_styles/hover = SubResource("StyleBoxFlat_uqwfd")
 text = "Save"
 
-[connection signal="new_pickup" from="." to="." method="_on_new_pickup"]
+[connection signal="open_panel_for_location" from="." to="." method="_on_open_panel_for_location"]
