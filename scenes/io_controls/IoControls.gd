@@ -38,11 +38,10 @@ func _export_v4() -> void:
 func _export_v5() -> void:
 	mouse_default_cursor_shape = Control.CURSOR_BUSY
 	var plando_name = %PlandoName.text if %PlandoName.text else %PlandoName.placeholder_text
-	var header:String = _create_header(plando_name)
 	var body:String = _assignments_as_v5(_fetch_assignments())
 	if body.is_empty():
 		pass  # TODO: Prevent download?
-	_download_file(header + body, plando_name + ".wotws")
+	_download_file(body, plando_name + ".wotws")
 	mouse_default_cursor_shape = Control.CURSOR_ARROW
 
 
