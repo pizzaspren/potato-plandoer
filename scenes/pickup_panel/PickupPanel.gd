@@ -1,6 +1,7 @@
 extends FoldableContainer
 class_name PickupPanel
 
+@warning_ignore("unused_signal")
 signal open_panel_for_location(pickup_name: String, selected_pickups: Array[PanelPickupModel], is_removing: bool, save_callback: Callable)
 
 @onready var scroll:ScrollContainer = %ScrollContainer

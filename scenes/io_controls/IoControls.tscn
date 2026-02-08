@@ -218,6 +218,7 @@ border_blend = true
 bg_color = Color(0.2509804, 0.25882354, 0.2509804, 1)
 
 [node name="IoControls" type="MarginContainer" unique_id=927959420]
+z_index = 10
 anchors_preset = 3
 anchor_left = 1.0
 anchor_top = 1.0

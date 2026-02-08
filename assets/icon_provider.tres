@@ -26,12 +26,25 @@
 [ext_resource type="Texture2D" uid="uid://cgpmd1byabfvh" path="res://assets/icons/npc/Opher.png" id="24_hvhya"]
 [ext_resource type="Texture2D" uid="uid://buwlqgb8slew0" path="res://assets/icons/npc/Twillen.png" id="25_7upip"]
 [ext_resource type="Texture2D" uid="uid://t7yw57w5f1h7" path="res://assets/icons/pickups/QuestReward.png" id="26_spdbt"]
+[ext_resource type="Texture2D" uid="uid://dv2owlm1l7pqg" path="res://assets/icons/walls/PurpleFloor.png" id="27_6kg6f"]
 [ext_resource type="Script" uid="uid://ppn81apy1apm" path="res://scripts/IconProvider.gd" id="27_spdbt"]
+[ext_resource type="Texture2D" uid="uid://ccyrhjnaof1on" path="res://assets/icons/walls/PurpleWall.png" id="28_3u2sx"]
+[ext_resource type="Texture2D" uid="uid://y22nkvyycwna" path="res://assets/icons/walls/YellowWall.png" id="29_xsvl3"]
+[ext_resource type="Texture2D" uid="uid://dh5sblejdpec8" path="res://assets/icons/walls/OnewayWallLeft.png" id="30_lhw08"]
+[ext_resource type="Texture2D" uid="uid://5bjj33kwkq0" path="res://assets/icons/walls/OnewayWallRight.png" id="31_m2qji"]
+[ext_resource type="Texture2D" uid="uid://cdh4d4iaw5uxr" path="res://assets/icons/walls/IceWall.png" id="32_hvhya"]
+[ext_resource type="Texture2D" uid="uid://cidvaqnhffnqb" path="res://assets/icons/walls/IceFloor.png" id="33_7upip"]
+[ext_resource type="Texture2D" uid="uid://c44p4r0ppe76s" path="res://assets/icons/walls/BlockedWall.png" id="34_tgplp"]
+[ext_resource type="Texture2D" uid="uid://fj3ec2semtmc" path="res://assets/icons/walls/BlockedFloor.png" id="35_vt0ux"]
+[ext_resource type="Texture2D" uid="uid://c61sm1jsmunpd" path="res://assets/icons/walls/BreakableGround.png" id="36_xsvl3"]
+[ext_resource type="Texture2D" uid="uid://b3exyg7qprjyk" path="res://assets/icons/walls/BreakableWall.png" id="37_lhw08"]
 
 [resource]
 script = ExtResource("27_spdbt")
 icon_map = Dictionary[int, Texture2D]({
 0: ExtResource("1_f2y4s"),
+2: ExtResource("37_lhw08"),
+4: ExtResource("36_xsvl3"),
 8: ExtResource("14_mtevb"),
 10: ExtResource("3_v7uxv"),
 15: ExtResource("13_l54pt"),
@@ -56,6 +69,15 @@ icon_map = Dictionary[int, Texture2D]({
 57: ExtResource("22_lhw08"),
 60: ExtResource("18_g1pra"),
 63: ExtResource("19_6kg6f"),
+103: ExtResource("27_6kg6f"),
+104: ExtResource("28_3u2sx"),
+105: ExtResource("29_xsvl3"),
+106: ExtResource("30_lhw08"),
+107: ExtResource("31_m2qji"),
+108: ExtResource("32_hvhya"),
+109: ExtResource("33_7upip"),
+110: ExtResource("34_tgplp"),
+111: ExtResource("35_vt0ux"),
 117: ExtResource("9_spdbt")
 })
 metadata/_custom_type_script = "uid://ppn81apy1apm"

@@ -3,24 +3,36 @@ class_name PlandoControls
 
 var _pickup_data_provider:PickupDataProvider
 var _pickup_location_provider:PickupLocationProvider
+var _wall_location_provider:WallLocationProvider
 
 
 func _ready() -> void:
 	_pickup_data_provider = get_tree().get_first_node_in_group("PickupDataProvider") as PickupDataProvider
 	_pickup_location_provider = get_tree().get_first_node_in_group("PickupLocationProvider") as PickupLocationProvider
+	_wall_location_provider = get_tree().get_first_node_in_group("WallLocationProvider") as WallLocationProvider
 
 
 func _clipboard_v4() -> void:
 	mouse_default_cursor_shape = Control.CURSOR_BUSY
-	var body:String = _assignments_as_v4(_fetch_assignments())
-	DisplayServer.clipboard_set(body)
+	var pickups:String = _location_assignments_as_v4(_fetch_location_assignments())
+	var walls:String = "\n".join(_fetch_toggled_walls().map(func _m(w): return _wall_location_provider.wall_as_v4(w)))
+	var content = "\n".join([
+		pickups,
+		walls,
+	])
+	DisplayServer.clipboard_set(content)
 	mouse_default_cursor_shape = Control.CURSOR_ARROW
 
 
 func _clipboard_v5() -> void:
 	mouse_default_cursor_shape = Control.CURSOR_BUSY
-	var body:String = _assignments_as_v5(_fetch_assignments())
-	DisplayServer.clipboard_set(body)
+	var pickups:String = _location_assignments_as_v5(_fetch_location_assignments())
+	var walls:String = "\n".join(_fetch_toggled_walls().map(func _m(w): return _wall_location_provider.wall_as_v5(w)))
+	var content = "\n".join([
+		pickups,
+		walls,
+	])
+	DisplayServer.clipboard_set(content)
 	mouse_default_cursor_shape = Control.CURSOR_ARROW
 
 
@@ -28,20 +40,31 @@ func _export_v4() -> void:
 	mouse_default_cursor_shape = Control.CURSOR_BUSY
 	var plando_name = %PlandoName.text if %PlandoName.text else %PlandoName.placeholder_text
 	var header:String = _create_header(plando_name)
-	var body:String = _assignments_as_v4(_fetch_assignments())
-	if body.is_empty():
+	var pickups:String = _location_assignments_as_v4(_fetch_location_assignments())
+	var walls:String = "\n".join(_fetch_toggled_walls().map(func _m(w): return _wall_location_provider.wall_as_v4(w)))
+	if pickups.is_empty() and walls.is_empty():
 		pass  # TODO: Prevent download?
-	_download_file(header + body, plando_name + ".wotwr")
+	var content = "\n".join([
+		header,
+		pickups,
+		walls,
+	])
+	_download_file(content, plando_name + ".wotwr")
 	mouse_default_cursor_shape = Control.CURSOR_ARROW
 
 
 func _export_v5() -> void:
 	mouse_default_cursor_shape = Control.CURSOR_BUSY
 	var plando_name = %PlandoName.text if %PlandoName.text else %PlandoName.placeholder_text
-	var body:String = _assignments_as_v5(_fetch_assignments())
-	if body.is_empty():
+	var pickups:String = _location_assignments_as_v5(_fetch_location_assignments())
+	var walls:String = "\n".join(_fetch_toggled_walls().map(func _m(w): return _wall_location_provider.wall_as_v5(w)))
+	if pickups.is_empty() and walls.is_empty():
 		pass  # TODO: Prevent download?
-	_download_file(body, plando_name + ".wotws")
+	var content = "\n".join([
+		pickups,
+		walls,
+	])
+	_download_file(content, plando_name + ".wotws")
 	mouse_default_cursor_shape = Control.CURSOR_ARROW
 
 
@@ -176,7 +199,7 @@ func _create_header(slug:String) -> String:
 	])
 
 
-func _fetch_assignments() -> Array:
+func _fetch_location_assignments() -> Array:
 	var assignments:Array = []
 	
 	var nodes = get_tree().get_nodes_in_group("PickupLocations")
@@ -197,7 +220,16 @@ func _fetch_assignments() -> Array:
 	return assignments
 
 
-func _assignments_as_v4(assignments: Array) -> String:
+func _fetch_toggled_walls() -> Array:
+	var toggled_walls = []
+	
+	var all_walls = get_tree().get_nodes_in_group("WallLocations")
+	for wall in all_walls:
+		if wall.button_pressed:
+			toggled_walls.append(wall.name)
+	return toggled_walls
+
+func _location_assignments_as_v4(assignments: Array) -> String:
 	var v4_contents:Array = []
 	for a in assignments:
 		var target_location:PickupButton = a[0]
@@ -218,7 +250,7 @@ func _assignments_as_v4(assignments: Array) -> String:
 	return "\n".join(v4_contents)
 
 
-func _assignments_as_v5(assignments: Array) -> String:
+func _location_assignments_as_v5(assignments: Array) -> String:
 	var v5_contents:Array = []
 	for a in assignments:
 		var target_location:PickupButton = a[0]

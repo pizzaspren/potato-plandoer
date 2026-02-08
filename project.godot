@@ -25,6 +25,7 @@ naming/script_name_casing=1
 PanelGroup=""
 PickupDataProvider=""
 PickupLocationProvider=""
+WallLocationProvider=""
 
 [importer_defaults]
 

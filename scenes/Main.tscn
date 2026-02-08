@@ -4,6 +4,7 @@
 [ext_resource type="Script" uid="uid://imy6sqiq04ty" path="res://scenes/Main.gd" id="1_rvslj"]
 [ext_resource type="PackedScene" uid="uid://bj4p54jw4djx7" path="res://scenes/pickup_panel/PickupPanel.tscn" id="3_0bbpv"]
 [ext_resource type="Script" uid="uid://ctpgarj5i6iit" path="res://scenes/PickupLocationProvider.gd" id="3_c01mt"]
+[ext_resource type="Script" uid="uid://8jm7678acyyj" path="res://scenes/WallLocationProvider.gd" id="4_nxtc6"]
 [ext_resource type="Script" uid="uid://cr401ntxpk6bp" path="res://scenes/PickupDataProvider.gd" id="5_vcsgt"]
 [ext_resource type="PackedScene" uid="uid://h0updaqid4o7" path="res://scenes/io_controls/IoControls.tscn" id="6_c01mt"]
 
@@ -34,6 +35,9 @@ script = ExtResource("5_vcsgt")
 
 [node name="PickupLocationProvider" type="Node" parent="." unique_id=1093050882 groups=["PickupLocationProvider"]]
 script = ExtResource("3_c01mt")
+
+[node name="WallLocationProvider" type="Node" parent="." unique_id=1196978917 groups=["WallLocationProvider"]]
+script = ExtResource("4_nxtc6")
 
 [node name="Background" type="ColorRect" parent="." unique_id=1022705432]
 layout_mode = 1
