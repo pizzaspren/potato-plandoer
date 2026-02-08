@@ -80,7 +80,7 @@
 	{"label":"EastPools.PurpleWallHCPurpleWall", "icon": 104, "positions":[{"x":-1285.69, "y":-4086.48}], "visibleIfAny": [{"uberIdentifier": [5377,31145], "comparator": 2, "value": 0.5}]},
 	{"label":"LowerWastes.PurpleWallEXPurpleWall", "icon": 104, "positions":[{"x":1543.66, "y":-3996.14}], "visibleIfAny": [{"uberIdentifier": [20120,51985], "comparator": 2, "value": 0.5}]},
 	{"label":"LowerWastes.LastStandShardPurpleWall", "icon": 104, "positions":[{"x":1826.43, "y":-3934.01}], "visibleIfAny": [{"uberIdentifier": [20120,16172], "comparator": 2, "value": 0.5}]},
-	{"label":"UpperPools.DrainRoomPurpleWall", "icon": 104, "positions":[{"x":-1350.80, "y":-4363.85}], "visibleIfAny": [{"uberIdentifier": [20120,43231], "comparator": 2, "value": 0.5}]},
+	{"label":"UpperPools.DrainRoomPurpleWall", "icon": 104, "positions":[{"x":-1350.80, "y":-4063.85}], "visibleIfAny": [{"uberIdentifier": [20120,43231], "comparator": 2, "value": 0.5}]},
 	{"label":"UpperWastes.LeverPurpleWall", "icon": 104, "positions":[{"x":2016.79, "y":-3790.23}], "visibleIfAny": [{"uberIdentifier": [20120,33775], "comparator": 2, "value": 0.5}]},
 	{"label":"UpperWastes.PurpleWallHCPurpleWall", "icon": 104, "positions":[{"x":2038.27, "y":-3840.74}], "visibleIfAny": [{"uberIdentifier": [20120,55388], "comparator": 2, "value": 0.5}]},
 	{"label":"EastPools.CentralRoomPurpleWall", "icon": 104, "positions":[{"x":-1479.52, "y":-4171.19}], "visibleIfAny": [{"uberIdentifier": [5377,10782], "comparator": 2, "value": 0.5}]},

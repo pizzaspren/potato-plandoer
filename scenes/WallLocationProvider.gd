@@ -23,8 +23,8 @@ func wall_as_v4(wall_name:String) -> String:
 	var value = roundi(wall_uberstate["value"])  # Some uberstates are returned as 0.5
 	
 	if value == 1:
-		return "3|0|%d|%d|bool|true" % [ubergroup, uberid]
-	return "3|0|%d|%d|int|%d" % [ubergroup, uberid, value]
+		return "3|0|8|%d|%d|bool|true" % [ubergroup, uberid]
+	return "3|0|8|%d|%d|int|%d" % [ubergroup, uberid, value]
 
 
 func wall_as_v5(wall_name:String) -> String:
