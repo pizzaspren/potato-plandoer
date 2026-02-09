@@ -3,7 +3,7 @@ class_name IconProvider
 
 
 @export var icon_map: Dictionary[IconType, Texture2D]
-
+var icon_bitmap_map: Dictionary[IconType, BitMap]
 
 enum IconType {
 	Keystone = 0,
@@ -98,3 +98,14 @@ enum IconType {
 	
 	Corruption = 200,
 }
+
+func get_bitmap(icon_id: IconType) -> BitMap:
+	if icon_bitmap_map.has(icon_id):
+		return icon_bitmap_map.get(icon_id)
+	else:
+		# Create the bitmap and cache it
+		var tex:Texture2D = icon_map.get(icon_id)
+		var bitmap:BitMap = BitMap.new()
+		bitmap.create_from_image_alpha(tex.get_image())
+		icon_bitmap_map[icon_id] = bitmap
+		return bitmap

@@ -230,6 +230,7 @@ metadata/_edit_lock_ = true
 [node name="Pickups" type="Node2D" parent="Origin/InGameOrigin/Icons" unique_id=703092305]
 script = ExtResource("2_d0ega")
 icon_provider = ExtResource("3_d0ega")
+icon_size = null
 metadata/_edit_lock_ = true
 
 [node name="Walls" type="Node2D" parent="Origin/InGameOrigin/Icons" unique_id=547370596]

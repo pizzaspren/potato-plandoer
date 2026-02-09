@@ -8,7 +8,7 @@ static var NORMAL_MODULATION:Color = Color.WHITE
 @export var icon_size = 15.0
 
 
-func _init(n: String, icon_resource: Texture2D, pos: Dictionary) -> void:
+func _init(n: String, icon_resource: Texture2D, clickable_mask:BitMap, pos: Dictionary) -> void:
 	name = n
 	toggle_mode = true
 	
@@ -19,6 +19,7 @@ func _init(n: String, icon_resource: Texture2D, pos: Dictionary) -> void:
 	scale = Vector2(1, -1)
 	stretch_mode = TextureButton.STRETCH_SCALE
 	texture_normal = icon_resource
+	texture_click_mask = clickable_mask
 	
 	mouse_default_cursor_shape = Control.CURSOR_POINTING_HAND
 	
