@@ -8,4 +8,9 @@ enum PickupState {
 }
 
 var removed:bool = false
+var message:String = ""
 var data:Dictionary[int, PickupState]
+
+
+func is_empty() -> bool:
+	return data.is_empty() and message.is_empty()

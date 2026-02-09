@@ -40,7 +40,7 @@ func _on_save_from_panel(pickup_name: String, selected_pickups: PanelPickupModel
 		return  # Not for this node
 	_selected_pickups = selected_pickups
 	
-	if _selected_pickups.data.is_empty():
+	if _selected_pickups.is_empty():
 		modulate = FADED_MODULATION  # Fade out icon if it's empty
 	else:
 		modulate = NORMAL_MODULATION

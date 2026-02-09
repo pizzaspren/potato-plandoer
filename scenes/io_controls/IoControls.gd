@@ -199,15 +199,17 @@ func _create_header(slug:String) -> String:
 	])
 
 
-func _fetch_location_assignments() -> Array:
-	var assignments:Array = []
+func _fetch_location_assignments() -> Array[Dictionary]:
+	var assignments:Array[Dictionary] = []
 	
 	var nodes = get_tree().get_nodes_in_group("PickupLocations")
 	for node in nodes:
 		var target_location = node as PickupButton
-		var pickups_for_location = target_location._selected_pickups.data
-		if !is_instance_valid(target_location) or pickups_for_location.is_empty():
+		if !is_instance_valid(target_location) or target_location._selected_pickups.is_empty():
 			continue
+		if target_location._selected_pickups.message:
+			assignments.append({"location": target_location, "message": target_location._selected_pickups.message})
+		var pickups_for_location = target_location._selected_pickups.data
 		for selected_pickup in pickups_for_location:
 			# Unmap from panel selection to pickup id
 			var pickup_id = _pickup_data_provider.pickup_mapping.get(selected_pickup)
@@ -216,7 +218,7 @@ func _fetch_location_assignments() -> Array:
 			# Fetch pickup object
 			var pickup = _pickup_data_provider.pickups_by_id[pickup_id]
 			var is_taking_away = pickups_for_location[selected_pickup] == PanelPickupModel.PickupState.TAKE
-			assignments.append([target_location, pickup, is_taking_away])
+			assignments.append({"location": target_location, "pickup": {"data": pickup, "removing": is_taking_away}})
 	return assignments
 
 
@@ -229,44 +231,54 @@ func _fetch_toggled_walls() -> Array:
 			toggled_walls.append(wall.name)
 	return toggled_walls
 
-func _location_assignments_as_v4(assignments: Array) -> String:
+
+func _location_assignments_as_v4(assignments: Array[Dictionary]) -> String:
 	var v4_contents:Array = []
 	for a in assignments:
-		var target_location:PickupButton = a[0]
-		var pickup:Dictionary = a[1]
-		var taking_away:bool = a[2]
-		
+		var target_location:PickupButton = a["location"]
 		var location_condition = _pickup_location_provider.location_as_condition_v4(target_location.name.replace("_", "."))
-		var pickup_ubergroup = int(pickup["mapping"]["v4"]["group"])
-		var pickup_uberid = int(pickup["mapping"]["v4"]["state"])
 		
-		if taking_away:
-			pickup_uberid = -pickup_uberid
-		v4_contents.append("%s|%d|%d" % [
-			location_condition,
-			pickup_ubergroup,
-			pickup_uberid
-		])
+		if a.has("message"):
+			v4_contents.append("%s|6|%s" % [location_condition, a["message"]])
+		if a.has("pickup"):
+			var pickup:Dictionary = a["pickup"]["data"]
+			var taking_away:bool = a["pickup"]["removing"]
+			
+			var pickup_ubergroup = int(pickup["mapping"]["v4"]["group"])
+			var pickup_uberid = int(pickup["mapping"]["v4"]["state"])
+			
+			if taking_away:
+				pickup_uberid = -pickup_uberid
+			v4_contents.append("%s|%d|%d" % [
+				location_condition,
+				pickup_ubergroup,
+				pickup_uberid
+			])
 	return "\n".join(v4_contents)
 
 
-func _location_assignments_as_v5(assignments: Array) -> String:
+func _location_assignments_as_v5(assignments: Array[Dictionary]) -> String:
 	var v5_contents:Array = []
 	for a in assignments:
-		var target_location:PickupButton = a[0]
-		var pickup:Dictionary = a[1]
-		var taking_away:bool = a[2]
-		
+		var target_location:PickupButton = a["location"]
 		var location_condition = _pickup_location_provider.location_as_condition_v5(target_location.name.replace("_", "."))
-		var pickup_call = pickup["mapping"]["v5"]
-		match pickup["type"]:
-			"skill": pickup_call = "skill(%s)" % pickup_call
-			"shard": pickup_call = "shard(%s)" % pickup_call
-			"teleporter": pickup_call = "teleporter(%s)" % pickup_call
-		if taking_away:
-			# Extremely convenient
-			pickup_call = "remove_%s" % pickup_call
-		v5_contents.append("%s %s" % [location_condition, pickup_call])
+		
+		if a.has("message"):
+			v5_contents.append("%s item_message(\"%s\")" % [location_condition, a["message"].replace("\"", "\\\"")])
+		
+		if a.has("pickup"):
+			var pickup:Dictionary = a["pickup"]["data"]
+			var taking_away:bool = a["pickup"]["removing"]
+			
+			var pickup_call = pickup["mapping"]["v5"]
+			match pickup["type"]:
+				"skill": pickup_call = "skill(%s)" % pickup_call
+				"shard": pickup_call = "shard(%s)" % pickup_call
+				"teleporter": pickup_call = "teleporter(%s)" % pickup_call
+			if taking_away:
+				# Extremely convenient
+				pickup_call = "remove_%s" % pickup_call
+			v5_contents.append("%s %s" % [location_condition, pickup_call])
 	return "\n".join(v5_contents)
 
 
