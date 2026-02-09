@@ -95,4 +95,6 @@ enum IconType {
 	DoorSmall = 115,
 	DoorSmallUnknown = 116,
 	Wisp = 117,
+	
+	Corruption = 200,
 }

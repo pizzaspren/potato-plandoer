@@ -38,6 +38,7 @@
 [ext_resource type="Texture2D" uid="uid://fj3ec2semtmc" path="res://assets/icons/walls/BlockedFloor.png" id="35_vt0ux"]
 [ext_resource type="Texture2D" uid="uid://c61sm1jsmunpd" path="res://assets/icons/walls/BreakableGround.png" id="36_xsvl3"]
 [ext_resource type="Texture2D" uid="uid://b3exyg7qprjyk" path="res://assets/icons/walls/BreakableWall.png" id="37_lhw08"]
+[ext_resource type="Texture2D" uid="uid://gplprnfakfqu" path="res://assets/icons/CorruptionBlob.png" id="38_lhw08"]
 
 [resource]
 script = ExtResource("27_spdbt")
@@ -78,6 +79,7 @@ icon_map = Dictionary[int, Texture2D]({
 109: ExtResource("33_7upip"),
 110: ExtResource("34_tgplp"),
 111: ExtResource("35_vt0ux"),
-117: ExtResource("9_spdbt")
+117: ExtResource("9_spdbt"),
+200: ExtResource("38_lhw08")
 })
 metadata/_custom_type_script = "uid://ppn81apy1apm"
