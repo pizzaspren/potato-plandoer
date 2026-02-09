@@ -239,7 +239,7 @@ size_flags_vertical = 8
 [node name="Version label" type="Label" parent="VBoxContainer" unique_id=1462801696]
 layout_mode = 2
 text = "Pizza's Potato Plandoer
-Version alpha-0.0.14"
+Version alpha-0.0.15"
 label_settings = SubResource("LabelSettings_s4r64")
 horizontal_alignment = 2
 vertical_alignment = 2
