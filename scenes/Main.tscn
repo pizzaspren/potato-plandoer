@@ -55,6 +55,7 @@ layout_mode = 1
 focus_mode = 1
 
 [node name="SidePanel" parent="." unique_id=1787131419 instance=ExtResource("3_0bbpv")]
+visible = false
 layout_mode = 0
 offset_left = 0.0
 offset_top = 0.0
@@ -114,8 +115,7 @@ text = "Click on any icon on the map to bring up the pickup menu for that locati
 Any change made to the pickup menu will not be stored until you click on SAVE.
 
 Icons without stored content are translucent.
-Icons with stored content are fully visible.
-"
+Icons with stored content are fully visible."
 fit_content = true
 scroll_active = false
 autowrap_mode = 2

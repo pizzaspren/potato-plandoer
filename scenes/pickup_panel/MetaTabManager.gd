@@ -1,16 +1,16 @@
 extends VBoxContainer
 class_name MetaTabManager
 
-@onready var remove_from_map:CheckButton = %RemoveFromMap
+@onready var pickup_exists:CheckButton = %PickupExists
 
 
 func reset() -> void:
-	remove_from_map.button_pressed = false
+	pickup_exists.button_pressed = true
 
 
 func set_from_model(model:PanelPickupModel) -> void:
-	remove_from_map.button_pressed = model.removed
+	pickup_exists.button_pressed = !model.removed
 
 
 func update_model(model:PanelPickupModel) -> void:
-	model.removed = remove_from_map.button_pressed
+	model.removed = !pickup_exists.button_pressed

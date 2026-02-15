@@ -20,5 +20,5 @@ func set_from_model(model:PanelPickupModel) -> void:
 
 func update_model(model:PanelPickupModel) -> void:
 	model.message = message_container.text
-	model.message_frames = message_duration.value
+	model.message_frames = int(message_duration.value)
 	model.mute_pickups = mute_pickups.button_pressed

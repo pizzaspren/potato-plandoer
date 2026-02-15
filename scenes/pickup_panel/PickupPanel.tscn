@@ -83,7 +83,6 @@ corner_radius_bottom_right = 2
 corner_radius_bottom_left = 2
 
 [node name="PickupPanel" type="FoldableContainer" unique_id=1787131419 groups=["PanelGroup"]]
-visible = false
 z_index = 10
 offset_left = 4.0
 offset_top = 4.0
@@ -218,6 +217,11 @@ text = "Mute pickups"
 unique_name_in_owner = true
 layout_mode = 2
 
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/TabContainer/Text/VBoxContainer" unique_id=487896530]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.43519253, 0.4351922, 0.43519226, 1)
+text = "Does nothing in v5 for now"
+
 [node name="Meta" type="VBoxContainer" parent="MarginContainer/VBoxContainer/TabContainer" unique_id=997649301]
 unique_name_in_owner = true
 visible = false
@@ -225,7 +229,7 @@ layout_mode = 2
 script = ExtResource("5_hbcr1")
 metadata/_tab_index = 2
 
-[node name="RemoveFromMap" type="CheckButton" parent="MarginContainer/VBoxContainer/TabContainer/Meta" unique_id=2005118509]
+[node name="PickupExists" type="CheckButton" parent="MarginContainer/VBoxContainer/TabContainer/Meta" unique_id=2005118509]
 unique_name_in_owner = true
 layout_mode = 2
 button_pressed = true

@@ -209,6 +209,10 @@ func _fetch_location_assignments() -> Array[Dictionary]:
 		var target_location = node as PickupButton
 		if !is_instance_valid(target_location) or target_location._selected_pickups.is_empty():
 			continue
+			
+		if target_location._selected_pickups.removed:
+			assignments.append({"location": target_location, "removed": true})
+			continue
 		if target_location._selected_pickups.message:
 			var message_data = {"location": target_location, "message": {"text": target_location._selected_pickups.message}}
 			if target_location._selected_pickups.message_frames != 240:
@@ -244,6 +248,9 @@ func _location_assignments_as_v4(assignments: Array[Dictionary]) -> String:
 		var target_location:PickupButton = a["location"]
 		var location_condition = _pickup_location_provider.location_as_condition_v4(target_location.name.replace("_", "."))
 		
+		if a.has("removed"):
+			v4_contents.append("3|0|%s" % _pickup_location_provider.location_as_assignment_v4(target_location.name.replace("_", ".")))
+
 		if a.has("message"):
 			var text = a["message"]["text"]
 			var custom_duration = a["message"].get("duration_frames", null)
@@ -251,6 +258,7 @@ func _location_assignments_as_v4(assignments: Array[Dictionary]) -> String:
 			if custom_duration:
 				message_statement += "|f=%d" % custom_duration
 			v4_contents.append(message_statement)
+
 		if a.has("pickup"):
 			var pickup:Dictionary = a["pickup"]["data"]
 			var taking_away:bool = a["pickup"]["removing"]
@@ -277,7 +285,10 @@ func _location_assignments_as_v5(assignments: Array[Dictionary]) -> String:
 	for a in assignments:
 		var target_location:PickupButton = a["location"]
 		var location_condition = _pickup_location_provider.location_as_condition_v5(target_location.name.replace("_", "."))
-		
+
+		if a.has("removed"):
+			v5_contents.append("on spawn %s" % _pickup_location_provider.location_as_assignment_v5(target_location.name.replace("_", ".")))
+
 		if a.has("message"):
 			var text = a["message"]["text"]
 			var custom_duration = a["message"].get("duration_frames", null)

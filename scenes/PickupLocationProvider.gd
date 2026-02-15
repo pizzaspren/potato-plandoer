@@ -47,6 +47,29 @@ func location_as_condition_v4(location_name:String) -> String:
 	
 	var location_condition = "%d|%d%s%d" % [ubergroup, uberid, operator, value]
 	return location_condition
+
+func location_as_assignment_v4(location_name:String) -> String:
+	var location_data = locations_by_name.get(location_name)
+	var location_uberstate = location_data["visibleIfAny"][0]
 	
+	var ubergroup = int(location_uberstate["uberIdentifier"][0])
+	var uberid = int(location_uberstate["uberIdentifier"][1])
+	var value = roundi(location_uberstate["value"])  # Some uberstates are returned as 0.5
+	if value == 1:
+		return "%d|%d|bool|true" % [ubergroup, uberid]  # What could go wrong?
+	return "%d|%d|int|%d" % [ubergroup, uberid, value]  # What could go wrong?
+
 func location_as_condition_v5(location_name:String) -> String:
 	return "on %s" % location_name
+
+func location_as_assignment_v5(location_name:String) -> String:
+	# Future-proof this? API might not return v4 values at some point
+	var location_data = locations_by_name.get(location_name)
+	var location_uberstate = location_data["visibleIfAny"][0]
+	
+	var ubergroup = int(location_uberstate["uberIdentifier"][0])
+	var uberid = int(location_uberstate["uberIdentifier"][1])
+	var value = roundi(location_uberstate["value"])  # Some uberstates are returned as 0.5
+	if value == 1:
+		return "store(%d|%d, true)" % [ubergroup, uberid]  # What could go wrong?
+	return "store(%d|%d, %d)" % [ubergroup, uberid, value]  # What could go wrong?
