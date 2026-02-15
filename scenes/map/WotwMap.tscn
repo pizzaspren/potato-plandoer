@@ -9,6 +9,8 @@
 [ext_resource type="Texture2D" uid="uid://im4q7wmhg2p3" path="res://assets/tiles/tile-1_4.png" id="4_77whi"]
 [ext_resource type="Script" uid="uid://doyobmlx8h03f" path="res://scenes/map/walls/MapWalls.gd" id="4_ujprb"]
 [ext_resource type="Texture2D" uid="uid://v7m3d1kfc4rk" path="res://assets/tiles/tile-1_5.png" id="5_juk1a"]
+[ext_resource type="Texture2D" uid="uid://x76hexh57amr" path="res://assets/icons/Ori.png" id="5_po760"]
+[ext_resource type="Script" uid="uid://dtlafi017jhq5" path="res://scenes/map/sprites/Spawn.gd" id="6_2ofu2"]
 [ext_resource type="Texture2D" uid="uid://by1tkys0ro331" path="res://assets/tiles/tile-2_3.png" id="6_pp7p1"]
 [ext_resource type="Texture2D" uid="uid://bs7k8ot74t854" path="res://assets/tiles/tile-2_4.png" id="7_4dcge"]
 [ext_resource type="Texture2D" uid="uid://ubsfhdk35gg4" path="res://assets/tiles/tile-2_5.png" id="8_3rh8i"]
@@ -236,6 +238,31 @@ metadata/_edit_lock_ = true
 [node name="Walls" type="Node2D" parent="Origin/InGameOrigin/Icons" unique_id=547370596]
 script = ExtResource("4_ujprb")
 icon_provider = ExtResource("3_d0ega")
+
+[node name="Spawn" type="Node2D" parent="Origin/InGameOrigin/Icons" unique_id=540866471]
+unique_name_in_owner = true
+visible = false
+position = Vector2(-784, -4310)
+
+[node name="TextureButton" type="TextureButton" parent="Origin/InGameOrigin/Icons/Spawn" unique_id=1271421656]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -10.0
+offset_top = -10.0
+offset_right = 10.0
+offset_bottom = 10.0
+grow_horizontal = 2
+grow_vertical = 2
+tooltip_text = "Spawn"
+mouse_default_cursor_shape = 2
+texture_normal = ExtResource("5_po760")
+ignore_texture_size = true
+stretch_mode = 0
+flip_v = true
+script = ExtResource("6_2ofu2")
 
 [node name="Tiles" type="Node2D" parent="Origin/InGameOrigin" unique_id=1826790488]
 unique_name_in_owner = true

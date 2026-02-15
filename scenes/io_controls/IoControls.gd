@@ -46,6 +46,8 @@ func _export_v4() -> void:
 		pass  # TODO: Prevent download?
 	var content = "\n".join([
 		header,
+		"",
+		"// User-placed pickups",
 		pickups,
 		walls,
 	])
@@ -208,7 +210,11 @@ func _fetch_location_assignments() -> Array[Dictionary]:
 		if !is_instance_valid(target_location) or target_location._selected_pickups.is_empty():
 			continue
 		if target_location._selected_pickups.message:
-			assignments.append({"location": target_location, "message": target_location._selected_pickups.message})
+			var message_data = {"location": target_location, "message": {"text": target_location._selected_pickups.message}}
+			if target_location._selected_pickups.message_frames != 240:
+				message_data["message"]["duration_frames"] = target_location._selected_pickups.message_frames
+			assignments.append(message_data)
+		var pickups_muted = target_location._selected_pickups.mute_pickups
 		var pickups_for_location = target_location._selected_pickups.data
 		for selected_pickup in pickups_for_location:
 			# Unmap from panel selection to pickup id
@@ -218,7 +224,7 @@ func _fetch_location_assignments() -> Array[Dictionary]:
 			# Fetch pickup object
 			var pickup = _pickup_data_provider.pickups_by_id[pickup_id]
 			var is_taking_away = pickups_for_location[selected_pickup] == PanelPickupModel.PickupState.TAKE
-			assignments.append({"location": target_location, "pickup": {"data": pickup, "removing": is_taking_away}})
+			assignments.append({"location": target_location, "pickup": {"data": pickup, "removing": is_taking_away, "muted": pickups_muted}})
 	return assignments
 
 
@@ -239,21 +245,30 @@ func _location_assignments_as_v4(assignments: Array[Dictionary]) -> String:
 		var location_condition = _pickup_location_provider.location_as_condition_v4(target_location.name.replace("_", "."))
 		
 		if a.has("message"):
-			v4_contents.append("%s|6|%s" % [location_condition, a["message"]])
+			var text = a["message"]["text"]
+			var custom_duration = a["message"].get("duration_frames", null)
+			var message_statement = "%s|6|%s" % [location_condition, text]
+			if custom_duration:
+				message_statement += "|f=%d" % custom_duration
+			v4_contents.append(message_statement)
 		if a.has("pickup"):
 			var pickup:Dictionary = a["pickup"]["data"]
 			var taking_away:bool = a["pickup"]["removing"]
+			var muted:bool = a["pickup"]["muted"]
 			
 			var pickup_ubergroup = int(pickup["mapping"]["v4"]["group"])
 			var pickup_uberid = int(pickup["mapping"]["v4"]["state"])
 			
 			if taking_away:
 				pickup_uberid = -pickup_uberid
-			v4_contents.append("%s|%d|%d" % [
+			var pickup_statement = "%s|%d|%d" % [
 				location_condition,
 				pickup_ubergroup,
 				pickup_uberid
-			])
+			]
+			if muted:
+				pickup_statement += "|mute"
+			v4_contents.append(pickup_statement)
 	return "\n".join(v4_contents)
 
 
@@ -264,11 +279,18 @@ func _location_assignments_as_v5(assignments: Array[Dictionary]) -> String:
 		var location_condition = _pickup_location_provider.location_as_condition_v5(target_location.name.replace("_", "."))
 		
 		if a.has("message"):
-			v5_contents.append("%s item_message(\"%s\")" % [location_condition, a["message"].replace("\"", "\\\"")])
+			var text = a["message"]["text"]
+			var custom_duration = a["message"].get("duration_frames", null)
+			if custom_duration:
+				v5_contents.append("%s item_message_with_timeout(\"%s\", %d)" % [location_condition, text.replace("\"", "\\\""), custom_duration])
+			else:
+				v5_contents.append("%s item_message(\"%s\")" % [location_condition, text.replace("\"", "\\\"")])
 		
 		if a.has("pickup"):
 			var pickup:Dictionary = a["pickup"]["data"]
 			var taking_away:bool = a["pickup"]["removing"]
+			# FIXME: v5 adds item messages by default and there's no easy way to map calls to states
+			# var muted:bool = a["pickup"]["muted"]  
 			
 			var pickup_call = pickup["mapping"]["v5"]
 			match pickup["type"]:

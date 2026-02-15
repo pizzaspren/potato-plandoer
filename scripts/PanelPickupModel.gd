@@ -7,10 +7,14 @@ enum PickupState {
 	TAKE = 2
 }
 
-var removed:bool = false
-var message:String = ""
 var data:Dictionary[int, PickupState]
+
+var message:String = ""
+var message_frames:int = 240
+var mute_pickups:bool = false
+
+var removed:bool = false
 
 
 func is_empty() -> bool:
-	return data.is_empty() and message.is_empty()
+	return data.is_empty() and message.is_empty() and !removed

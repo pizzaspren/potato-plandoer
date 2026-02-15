@@ -1,7 +1,10 @@
 [gd_scene format=3 uid="uid://bj4p54jw4djx7"]
 
 [ext_resource type="Script" uid="uid://32yogalb1afk" path="res://scenes/pickup_panel/PickupPanel.gd" id="1_oqxcs"]
+[ext_resource type="Script" uid="uid://crkcmkjkjmw87" path="res://scenes/pickup_panel/PickupsTabManager.gd" id="2_b0tw2"]
 [ext_resource type="Script" uid="uid://bunafcj1t10sj" path="res://scenes/pickup_panel/PickupListContainer.gd" id="3_b0tw2"]
+[ext_resource type="Script" uid="uid://xv78nd6unme7" path="res://scenes/pickup_panel/TextTabManager.gd" id="4_hgo26"]
+[ext_resource type="Script" uid="uid://b6svl738xh6xd" path="res://scenes/pickup_panel/MetaTabManager.gd" id="5_hbcr1"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fvdpa"]
 bg_color = Color(0, 0, 0, 1)
@@ -108,16 +111,51 @@ theme_override_constants/margin_bottom = 4
 layout_mode = 2
 theme_override_constants/separation = 4
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="MarginContainer/VBoxContainer" unique_id=314093583]
+[node name="TabContainer" type="TabContainer" parent="MarginContainer/VBoxContainer" unique_id=1828999404]
+unique_name_in_owner = true
 layout_mode = 2
-tooltip_text = "Extra message when the pickup is collected"
+size_flags_vertical = 3
+theme_override_constants/side_margin = 0
+current_tab = 0
 
-[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer2" unique_id=729421403]
+[node name="Pickups" type="MarginContainer" parent="MarginContainer/VBoxContainer/TabContainer" unique_id=723923829]
+unique_name_in_owner = true
 layout_mode = 2
-theme_override_font_sizes/font_size = 11
-text = "Message"
+theme_override_constants/margin_left = 6
+theme_override_constants/margin_right = 6
+script = ExtResource("2_b0tw2")
+metadata/_tab_index = 0
 
-[node name="CustomMessage" type="LineEdit" parent="MarginContainer/VBoxContainer/HBoxContainer2" unique_id=1579509780]
+[node name="PickupsScrollContainer" type="ScrollContainer" parent="MarginContainer/VBoxContainer/TabContainer/Pickups" unique_id=318350389]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/scrollbar_h_separation = 4
+
+[node name="PickupListContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/TabContainer/Pickups/PickupsScrollContainer" unique_id=1781153854]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+script = ExtResource("3_b0tw2")
+
+[node name="Text" type="MarginContainer" parent="MarginContainer/VBoxContainer/TabContainer" unique_id=1288760119]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+theme_override_constants/margin_left = 6
+theme_override_constants/margin_right = 6
+script = ExtResource("4_hgo26")
+metadata/_tab_index = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/TabContainer/Text" unique_id=241233852]
+layout_mode = 2
+
+[node name="MessageOnPickup" type="Label" parent="MarginContainer/VBoxContainer/TabContainer/Text/VBoxContainer" unique_id=729421403]
+layout_mode = 2
+text = "Message on pickup"
+horizontal_alignment = 1
+
+[node name="CustomMessage" type="LineEdit" parent="MarginContainer/VBoxContainer/TabContainer/Text/VBoxContainer" unique_id=1579509780]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
@@ -129,29 +167,69 @@ shortcut_keys_enabled = false
 middle_mouse_paste_enabled = false
 drag_and_drop_selection_enabled = false
 
-[node name="HSeparator2" type="HSeparator" parent="MarginContainer/VBoxContainer" unique_id=1641084942]
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/TabContainer/Text/VBoxContainer" unique_id=766930030]
 layout_mode = 2
+tooltip_text = "Governed by FPS configuration on the player's game. Usually, 1 second = 60 frames.
 
-[node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/VBoxContainer" unique_id=318350389]
-unique_name_in_owner = true
+Default is 4 seconds or 240 frames."
+theme_override_constants/separation = 30
+
+[node name="DurationLabel" type="Label" parent="MarginContainer/VBoxContainer/TabContainer/Text/VBoxContainer/HBoxContainer" unique_id=2024293842]
 layout_mode = 2
-size_flags_vertical = 3
-theme_override_constants/scrollbar_h_separation = 4
+size_flags_horizontal = 0
+text = "Duration"
+vertical_alignment = 1
 
-[node name="PickupListContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/ScrollContainer" unique_id=1781153854]
+[node name="DurationFrames" type="SpinBox" parent="MarginContainer/VBoxContainer/TabContainer/Text/VBoxContainer/HBoxContainer" unique_id=628874250]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
-script = ExtResource("3_b0tw2")
+max_value = 240.0
+value = 240.0
+rounded = true
+allow_greater = true
+alignment = 2
+suffix = " frames"
 
-[node name="RemoveSlider" type="CheckButton" parent="MarginContainer/VBoxContainer" unique_id=1163146887]
+[node name="RichTextLabel" type="RichTextLabel" parent="MarginContainer/VBoxContainer/TabContainer/Text/VBoxContainer" unique_id=590683821]
+layout_mode = 2
+theme_override_colors/default_color = Color(0.3665946, 0.3665946, 0.36659458, 1)
+bbcode_enabled = true
+text = "The text supports color codes.
+[color=cyan]*blue*[/color], [color=red]@red@[/color], [color=yellow]#yellow#[/color], [color=green]$green$[/color] or [color=purple]<purple>purple</>[/color]. You can also use [color=#3476c3]<hex_3476c3ff>hex values</>[/color] to add custom colors. Alpha value is mandatory for hex.
+
+You can also use custom <s_1.1>text sizes</> and custom <ls_3>line sizes</>."
+fit_content = true
+shortcut_keys_enabled = false
+
+[node name="HSeparator" type="HSeparator" parent="MarginContainer/VBoxContainer/TabContainer/Text/VBoxContainer" unique_id=1593753232]
+layout_mode = 2
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="MarginContainer/VBoxContainer/TabContainer/Text/VBoxContainer" unique_id=1401312762]
+layout_mode = 2
+tooltip_text = "Whether pickups should be given silently. Can be set to True without text to make a completely silent pickup."
+
+[node name="MuteEverythingElseLabel" type="Label" parent="MarginContainer/VBoxContainer/TabContainer/Text/VBoxContainer/HBoxContainer2" unique_id=1963576170]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Mute pickups"
+
+[node name="MuteEverythingElse" type="CheckButton" parent="MarginContainer/VBoxContainer/TabContainer/Text/VBoxContainer/HBoxContainer2" unique_id=1730343399]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="Meta" type="VBoxContainer" parent="MarginContainer/VBoxContainer/TabContainer" unique_id=997649301]
 unique_name_in_owner = true
 visible = false
 layout_mode = 2
-text = "Take away selected"
+script = ExtResource("5_hbcr1")
+metadata/_tab_index = 2
 
-[node name="HSeparator" type="HSeparator" parent="MarginContainer/VBoxContainer" unique_id=1868531196]
+[node name="RemoveFromMap" type="CheckButton" parent="MarginContainer/VBoxContainer/TabContainer/Meta" unique_id=2005118509]
+unique_name_in_owner = true
 layout_mode = 2
+button_pressed = true
+text = "Pickup exists"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer" unique_id=1656351891]
 layout_mode = 2
