@@ -38,7 +38,7 @@ func _clipboard_v5() -> void:
 
 func _export_v4() -> void:
 	mouse_default_cursor_shape = Control.CURSOR_BUSY
-	var plando_name = %PlandoName.text if %PlandoName.text else %PlandoName.placeholder_text
+	var plando_name = %PlandoName_V4.text if %PlandoName_V4.text else %PlandoName_V4.placeholder_text
 	var header:String = _create_header(plando_name)
 	var pickups:String = _location_assignments_as_v4(_fetch_location_assignments())
 	var walls:String = "\n".join(_fetch_toggled_walls().map(func _m(w): return _wall_location_provider.wall_as_v4(w)))
@@ -57,7 +57,7 @@ func _export_v4() -> void:
 
 func _export_v5() -> void:
 	mouse_default_cursor_shape = Control.CURSOR_BUSY
-	var plando_name = %PlandoName.text if %PlandoName.text else %PlandoName.placeholder_text
+	var plando_name = %PlandoName_V5.text if %PlandoName_V5.text else %PlandoName_V5.placeholder_text
 	var pickups:String = _location_assignments_as_v5(_fetch_location_assignments())
 	var walls:String = "\n".join(_fetch_toggled_walls().map(func _m(w): return _wall_location_provider.wall_as_v5(w)))
 	if pickups.is_empty() and walls.is_empty():
@@ -207,19 +207,19 @@ func _fetch_location_assignments() -> Array[Dictionary]:
 	var nodes = get_tree().get_nodes_in_group("PickupLocations")
 	for node in nodes:
 		var target_location = node as PickupButton
-		if !is_instance_valid(target_location) or target_location._selected_pickups.is_empty():
+		if !is_instance_valid(target_location) or target_location._model.is_empty():
 			continue
 			
-		if target_location._selected_pickups.removed:
+		if target_location._model.removed:
 			assignments.append({"location": target_location, "removed": true})
 			continue
-		if target_location._selected_pickups.message:
-			var message_data = {"location": target_location, "message": {"text": target_location._selected_pickups.message}}
-			if target_location._selected_pickups.message_frames != 240:
-				message_data["message"]["duration_frames"] = target_location._selected_pickups.message_frames
+		if target_location._model.message:
+			var message_data = {"location": target_location, "message": {"text": target_location._model.message}}
+			if target_location._model.message_frames != 240:
+				message_data["message"]["duration_frames"] = target_location._model.message_frames
 			assignments.append(message_data)
-		var pickups_muted = target_location._selected_pickups.mute_pickups
-		var pickups_for_location = target_location._selected_pickups.data
+		var pickups_muted = target_location._model.mute_pickups
+		var pickups_for_location = target_location._model.data
 		for selected_pickup in pickups_for_location:
 			# Unmap from panel selection to pickup id
 			var pickup_id = _pickup_data_provider.pickup_mapping.get(selected_pickup)
@@ -319,3 +319,23 @@ func _download_file(contents:String, filename:String) -> void:
 	if OS.has_feature("editor"):
 		print(contents)
 	JavaScriptBridge.download_buffer(contents.to_utf8_buffer(), filename, "text/plain")
+
+
+func _on_save_json() -> void:
+	var exportable_json = {}
+	var get_pickups = func gp() -> Dictionary:
+		var exportable = {}
+		var nodes = get_tree().get_nodes_in_group("PickupLocations")
+		for node in nodes:
+			var target_location = node as PickupButton
+			if !is_instance_valid(target_location) or target_location._model.is_empty():
+				continue
+			exportable[target_location.name] = target_location._model.as_json()
+		return exportable
+	exportable_json["pickups"] = get_pickups.call()
+	exportable_json["toggles"] = _fetch_toggled_walls()	
+	_download_file(JSON.stringify(exportable_json), "ppp.json")
+
+
+func _on_load_json() -> void:
+	pass

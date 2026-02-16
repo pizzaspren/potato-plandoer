@@ -18,3 +18,12 @@ var removed:bool = false
 
 func is_empty() -> bool:
 	return data.is_empty() and message.is_empty() and !removed
+
+func as_json() -> Dictionary:
+	return {
+		"data": data,
+		"message": message,
+		"message_frames": message_frames,
+		"mute_pickups": mute_pickups,
+		"removed": removed,
+	}

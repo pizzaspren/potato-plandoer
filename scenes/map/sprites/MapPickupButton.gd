@@ -7,7 +7,7 @@ static var NORMAL_MODULATION:Color = Color.WHITE
 var _panel:PickupPanel
 
 @export var icon_size = 15.0
-var _selected_pickups:PanelPickupModel = PanelPickupModel.new()
+var _model:PanelPickupModel = PanelPickupModel.new()
 
 # Created anew every run
 func _init(n: String, icon_resource: Texture2D, clickable_mask:BitMap, pos: Dictionary) -> void:
@@ -33,15 +33,15 @@ func _ready() -> void:
 func _on_pressed() -> void:
 	if not _panel:
 		_panel = get_tree().get_first_node_in_group("PanelGroup")
-	_panel.open_panel_for_location.emit(name, _selected_pickups, _on_save_from_panel)
+	_panel.open_panel_for_location.emit(name, _model, _on_save_from_panel)
 
 
 func _on_save_from_panel(pickup_name: String, selected_pickups: PanelPickupModel):
 	if pickup_name != name:
 		return  # Not for this node
-	_selected_pickups = selected_pickups
+	_model = selected_pickups
 	
-	if _selected_pickups.is_empty():
+	if _model.is_empty():
 		modulate = FADED_MODULATION  # Fade out icon if it's empty
 	else:
 		modulate = NORMAL_MODULATION

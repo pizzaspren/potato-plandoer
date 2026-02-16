@@ -197,7 +197,7 @@ bbcode_enabled = true
 text = "The text supports color codes.
 [color=cyan]*blue*[/color], [color=red]@red@[/color], [color=yellow]#yellow#[/color], [color=green]$green$[/color] or [color=purple]<purple>purple</>[/color]. You can also use [color=#3476c3]<hex_3476c3ff>hex values</>[/color] to add custom colors. Alpha value is mandatory for hex.
 
-You can also use custom <s_1.1>text sizes</> and custom <ls_3>line sizes</>."
+You can also use custom <s_2.5>text sizes<s_1>. <ls_3>And custom line sizes, but only after a newline (\\n)."
 fit_content = true
 shortcut_keys_enabled = false
 

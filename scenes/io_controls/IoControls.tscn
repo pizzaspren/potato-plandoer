@@ -107,6 +107,17 @@ corner_radius_top_right = 2
 corner_radius_bottom_right = 2
 corner_radius_bottom_left = 2
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yxgwj"]
+bg_color = Color(0, 0, 0, 0.5372549)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_blend = true
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kdpwx"]
+bg_color = Color(0.2509804, 0.25882354, 0.2509804, 1)
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fudgi"]
 content_margin_left = 2.0
 content_margin_top = 2.0
@@ -206,17 +217,6 @@ corner_radius_top_right = 2
 corner_radius_bottom_right = 2
 corner_radius_bottom_left = 2
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yxgwj"]
-bg_color = Color(0, 0, 0, 0.5372549)
-border_width_left = 1
-border_width_top = 1
-border_width_right = 1
-border_width_bottom = 1
-border_blend = true
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kdpwx"]
-bg_color = Color(0.2509804, 0.25882354, 0.2509804, 1)
-
 [node name="IoControls" type="MarginContainer" unique_id=927959420]
 z_index = 10
 anchors_preset = 3
@@ -224,8 +224,8 @@ anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -284.0
-offset_top = -44.0
+offset_left = -260.0
+offset_top = -156.0
 grow_horizontal = 0
 grow_vertical = 0
 theme_override_constants/margin_right = 4
@@ -239,25 +239,74 @@ size_flags_vertical = 8
 [node name="Version label" type="Label" parent="VBoxContainer" unique_id=1462801696]
 layout_mode = 2
 text = "Pizza's Potato Plandoer
-Version alpha-0.0.17"
+Version alpha-0.0.18"
 label_settings = SubResource("LabelSettings_s4r64")
 horizontal_alignment = 2
 vertical_alignment = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer" unique_id=635881041]
+[node name="TabContainer" type="TabContainer" parent="VBoxContainer" unique_id=1272303321]
+layout_mode = 2
+theme_override_constants/side_margin = 0
+theme_override_font_sizes/font_size = 12
+tab_alignment = 2
+current_tab = 0
+tab_0/title = "Load/Save"
+
+[node name="Load_Save" type="MarginContainer" parent="VBoxContainer/TabContainer" unique_id=1185968205]
+layout_mode = 2
+theme_override_constants/margin_left = 6
+theme_override_constants/margin_top = 6
+theme_override_constants/margin_right = 6
+theme_override_constants/margin_bottom = 6
+metadata/_tab_index = 0
+metadata/_tab_name = "Load/Save"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/TabContainer/Load_Save" unique_id=1309908051]
+layout_mode = 2
+theme_override_constants/separation = 6
+
+[node name="Label" type="Label" parent="VBoxContainer/TabContainer/Load_Save/VBoxContainer" unique_id=538383090]
+layout_mode = 2
+theme_override_font_sizes/font_size = 9
+text = "Save your work to continue at a later date."
+horizontal_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/TabContainer/Load_Save/VBoxContainer" unique_id=633022592]
 layout_mode = 2
 
-[node name="HBoxContainer_V4" type="HBoxContainer" parent="VBoxContainer/VBoxContainer" unique_id=528856734]
-layout_mode = 2
-size_flags_horizontal = 8
-
-[node name="LabelV4" type="Label" parent="VBoxContainer/VBoxContainer/HBoxContainer_V4" unique_id=790845285]
-layout_mode = 2
-text = "v4"
-
-[node name="ClipboardV4" type="Button" parent="VBoxContainer/VBoxContainer/HBoxContainer_V4" unique_id=2106680790]
+[node name="Load" type="Button" parent="VBoxContainer/TabContainer/Load_Save/VBoxContainer/HBoxContainer" unique_id=1694430822]
 custom_minimum_size = Vector2(45, 45)
 layout_mode = 2
+size_flags_horizontal = 3
+disabled = true
+text = "Load JSON"
+
+[node name="Save" type="Button" parent="VBoxContainer/TabContainer/Load_Save/VBoxContainer/HBoxContainer" unique_id=1904147833]
+custom_minimum_size = Vector2(45, 45)
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Save JSON"
+
+[node name="Export v4" type="MarginContainer" parent="VBoxContainer/TabContainer" unique_id=718774955]
+visible = false
+layout_mode = 2
+theme_override_constants/margin_left = 6
+theme_override_constants/margin_top = 6
+theme_override_constants/margin_right = 6
+theme_override_constants/margin_bottom = 6
+metadata/_tab_index = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/TabContainer/Export v4" unique_id=1053772533]
+layout_mode = 2
+theme_override_constants/separation = 3
+
+[node name="HBoxContainer_V4" type="HBoxContainer" parent="VBoxContainer/TabContainer/Export v4/VBoxContainer" unique_id=528856734]
+layout_mode = 2
+
+[node name="ClipboardV4" type="Button" parent="VBoxContainer/TabContainer/Export v4/VBoxContainer/HBoxContainer_V4" unique_id=2106680790]
+custom_minimum_size = Vector2(30, 30)
+layout_mode = 2
+size_flags_horizontal = 3
 tooltip_text = "Copy as v4 snippet"
 mouse_default_cursor_shape = 2
 theme_override_colors/icon_normal_color = Color(0, 0, 0, 1)
@@ -269,13 +318,14 @@ theme_override_colors/icon_disabled_color = Color(0, 0, 0, 0.4)
 theme_override_styles/normal = SubResource("StyleBoxFlat_gjh36")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_om67x")
 theme_override_styles/hover = SubResource("StyleBoxFlat_xgbvo")
+text = "Clipboard"
 icon = ExtResource("2_5j3iq")
-icon_alignment = 1
 expand_icon = true
 
-[node name="ExportV4" type="Button" parent="VBoxContainer/VBoxContainer/HBoxContainer_V4" unique_id=1929647162]
-custom_minimum_size = Vector2(45, 45)
+[node name="ExportV4" type="Button" parent="VBoxContainer/TabContainer/Export v4/VBoxContainer/HBoxContainer_V4" unique_id=1929647162]
+custom_minimum_size = Vector2(30, 30)
 layout_mode = 2
+size_flags_horizontal = 3
 tooltip_text = "Save v4 Plando to file"
 mouse_default_cursor_shape = 2
 theme_override_colors/icon_normal_color = Color(0, 0, 0, 1)
@@ -287,22 +337,46 @@ theme_override_colors/icon_disabled_color = Color(0, 0, 0, 0.4)
 theme_override_styles/normal = SubResource("StyleBoxFlat_osg0p")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_70ba0")
 theme_override_styles/hover = SubResource("StyleBoxFlat_t0luw")
+text = "Download"
 icon = ExtResource("3_bvmi5")
-icon_alignment = 1
 expand_icon = true
 
-[node name="HBoxContainer_V5" type="HBoxContainer" parent="VBoxContainer/VBoxContainer" unique_id=869659710]
+[node name="PlandoName_V4" type="LineEdit" parent="VBoxContainer/TabContainer/Export v4/VBoxContainer" unique_id=409751125]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_yxgwj")
+theme_override_styles/focus = SubResource("StyleBoxFlat_kdpwx")
+text = "MyPlando_v4"
+placeholder_text = "YourAwesomePlandoNameGoesHere"
+alignment = 2
+context_menu_enabled = false
+emoji_menu_enabled = false
+shortcut_keys_enabled = false
+middle_mouse_paste_enabled = false
+drag_and_drop_selection_enabled = false
+virtual_keyboard_enabled = false
+
+[node name="Export v5" type="MarginContainer" parent="VBoxContainer/TabContainer" unique_id=514110697]
+visible = false
+layout_mode = 2
+theme_override_constants/margin_left = 6
+theme_override_constants/margin_top = 6
+theme_override_constants/margin_right = 6
+theme_override_constants/margin_bottom = 6
+metadata/_tab_index = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/TabContainer/Export v5" unique_id=1872213180]
+layout_mode = 2
+theme_override_constants/separation = 3
+
+[node name="HBoxContainer_V5" type="HBoxContainer" parent="VBoxContainer/TabContainer/Export v5/VBoxContainer" unique_id=869659710]
 layout_direction = 2
 layout_mode = 2
-size_flags_horizontal = 8
 
-[node name="LabelV5" type="Label" parent="VBoxContainer/VBoxContainer/HBoxContainer_V5" unique_id=164457952]
+[node name="ClipboardV5" type="Button" parent="VBoxContainer/TabContainer/Export v5/VBoxContainer/HBoxContainer_V5" unique_id=1131732443]
+custom_minimum_size = Vector2(30, 30)
 layout_mode = 2
-text = "v5"
-
-[node name="ClipboardV5" type="Button" parent="VBoxContainer/VBoxContainer/HBoxContainer_V5" unique_id=1131732443]
-custom_minimum_size = Vector2(45, 45)
-layout_mode = 2
+size_flags_horizontal = 3
 tooltip_text = "Copy as v5 snippet"
 mouse_default_cursor_shape = 2
 theme_override_colors/icon_normal_color = Color(0, 0, 0, 1)
@@ -314,13 +388,14 @@ theme_override_colors/icon_disabled_color = Color(0, 0, 0, 0.4)
 theme_override_styles/normal = SubResource("StyleBoxFlat_fudgi")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_chxka")
 theme_override_styles/hover = SubResource("StyleBoxFlat_hmtc0")
+text = "Clipboard"
 icon = ExtResource("2_5j3iq")
-icon_alignment = 1
 expand_icon = true
 
-[node name="ExportV5" type="Button" parent="VBoxContainer/VBoxContainer/HBoxContainer_V5" unique_id=2038679178]
-custom_minimum_size = Vector2(45, 45)
+[node name="ExportV5" type="Button" parent="VBoxContainer/TabContainer/Export v5/VBoxContainer/HBoxContainer_V5" unique_id=2038679178]
+custom_minimum_size = Vector2(30, 30)
 layout_mode = 2
+size_flags_horizontal = 3
 tooltip_text = "Save v5 Plando to file"
 mouse_default_cursor_shape = 2
 theme_override_colors/icon_normal_color = Color(0, 0, 0, 1)
@@ -332,16 +407,16 @@ theme_override_colors/icon_disabled_color = Color(0, 0, 0, 0.4)
 theme_override_styles/normal = SubResource("StyleBoxFlat_he305")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_tkopc")
 theme_override_styles/hover = SubResource("StyleBoxFlat_ejiue")
+text = "Download"
 icon = ExtResource("3_bvmi5")
-icon_alignment = 1
 expand_icon = true
 
-[node name="PlandoName" type="LineEdit" parent="VBoxContainer" unique_id=409751125]
+[node name="PlandoName_V5" type="LineEdit" parent="VBoxContainer/TabContainer/Export v5/VBoxContainer" unique_id=1773321628]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_styles/normal = SubResource("StyleBoxFlat_yxgwj")
 theme_override_styles/focus = SubResource("StyleBoxFlat_kdpwx")
-text = "MyPlando"
+text = "MyPlando_v5"
 placeholder_text = "YourAwesomePlandoNameGoesHere"
 alignment = 2
 context_menu_enabled = false
@@ -351,7 +426,8 @@ middle_mouse_paste_enabled = false
 drag_and_drop_selection_enabled = false
 virtual_keyboard_enabled = false
 
-[connection signal="pressed" from="VBoxContainer/VBoxContainer/HBoxContainer_V4/ClipboardV4" to="." method="_clipboard_v4"]
-[connection signal="pressed" from="VBoxContainer/VBoxContainer/HBoxContainer_V4/ExportV4" to="." method="_export_v4"]
-[connection signal="pressed" from="VBoxContainer/VBoxContainer/HBoxContainer_V5/ClipboardV5" to="." method="_clipboard_v5"]
-[connection signal="pressed" from="VBoxContainer/VBoxContainer/HBoxContainer_V5/ExportV5" to="." method="_export_v5"]
+[connection signal="pressed" from="VBoxContainer/TabContainer/Load_Save/VBoxContainer/HBoxContainer/Save" to="." method="_on_save_json"]
+[connection signal="pressed" from="VBoxContainer/TabContainer/Export v4/VBoxContainer/HBoxContainer_V4/ClipboardV4" to="." method="_clipboard_v4"]
+[connection signal="pressed" from="VBoxContainer/TabContainer/Export v4/VBoxContainer/HBoxContainer_V4/ExportV4" to="." method="_export_v4"]
+[connection signal="pressed" from="VBoxContainer/TabContainer/Export v5/VBoxContainer/HBoxContainer_V5/ClipboardV5" to="." method="_clipboard_v5"]
+[connection signal="pressed" from="VBoxContainer/TabContainer/Export v5/VBoxContainer/HBoxContainer_V5/ExportV5" to="." method="_export_v5"]
