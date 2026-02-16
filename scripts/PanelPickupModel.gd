@@ -19,7 +19,7 @@ var removed:bool = false
 func is_empty() -> bool:
 	return data.is_empty() and message.is_empty() and !removed
 
-func as_json() -> Dictionary:
+func as_dict() -> Dictionary:
 	return {
 		"data": data,
 		"message": message,
@@ -27,3 +27,15 @@ func as_json() -> Dictionary:
 		"mute_pickups": mute_pickups,
 		"removed": removed,
 	}
+
+
+func from_dict(d: Dictionary) -> void:
+	var mapped_data:Dictionary[int,PickupState] = {} as Dictionary[int,PickupState]
+	for k in d.get("data", {}).keys():
+		mapped_data[int(k)] = int(d.get("data")[k]) as PickupState
+	print(mapped_data)
+	data = mapped_data
+	message = d.get("message", "")
+	message_frames = d.get("message_frames", 240)
+	mute_pickups = d.get("mute_pickups", false)
+	removed = d.get("removed", false)

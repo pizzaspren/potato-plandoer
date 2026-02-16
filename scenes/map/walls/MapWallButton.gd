@@ -30,8 +30,12 @@ func _ready() -> void:
 	toggled.connect(_on_toggle)
 
 
-func _on_toggle(toggle_status:bool) -> void:
-	if toggle_status:
+func _on_toggle(_toggle_status:bool) -> void:
+	update_modulation()
+
+func update_modulation() -> void:
+	if button_pressed:
 		modulate = FADED_MODULATION  # Fade out if pressed
 	else:
 		modulate = NORMAL_MODULATION
+	

@@ -33,14 +33,17 @@ func _ready() -> void:
 func _on_pressed() -> void:
 	if not _panel:
 		_panel = get_tree().get_first_node_in_group("PanelGroup")
-	_panel.open_panel_for_location.emit(name, _model, _on_save_from_panel)
+	_panel.open_panel_for_location.emit(name, _model, set_model)
 
 
-func _on_save_from_panel(pickup_name: String, selected_pickups: PanelPickupModel):
+func set_model(pickup_name: String, selected_pickups: PanelPickupModel):
 	if pickup_name != name:
 		return  # Not for this node
 	_model = selected_pickups
-	
+	update_modulation()
+
+
+func update_modulation() -> void:
 	if _model.is_empty():
 		modulate = FADED_MODULATION  # Fade out icon if it's empty
 	else:

@@ -4,12 +4,15 @@ class_name PlandoControls
 var _pickup_data_provider:PickupDataProvider
 var _pickup_location_provider:PickupLocationProvider
 var _wall_location_provider:WallLocationProvider
-
+var _file_access_web: FileAccessWeb = FileAccessWeb.new()
 
 func _ready() -> void:
 	_pickup_data_provider = get_tree().get_first_node_in_group("PickupDataProvider") as PickupDataProvider
 	_pickup_location_provider = get_tree().get_first_node_in_group("PickupLocationProvider") as PickupLocationProvider
 	_wall_location_provider = get_tree().get_first_node_in_group("WallLocationProvider") as WallLocationProvider
+	_file_access_web.loaded.connect(_on_file_loaded)
+	# TODO: Errors
+	# _file_access_web.error.connect(...)
 
 
 func _clipboard_v4() -> void:
@@ -323,6 +326,7 @@ func _download_file(contents:String, filename:String) -> void:
 
 func _on_save_json() -> void:
 	var exportable_json = {}
+	# I really don't like doing this here, but it works for now
 	var get_pickups = func gp() -> Dictionary:
 		var exportable = {}
 		var nodes = get_tree().get_nodes_in_group("PickupLocations")
@@ -330,12 +334,29 @@ func _on_save_json() -> void:
 			var target_location = node as PickupButton
 			if !is_instance_valid(target_location) or target_location._model.is_empty():
 				continue
-			exportable[target_location.name] = target_location._model.as_json()
+			exportable[target_location.name] = target_location._model.as_dict()
 		return exportable
 	exportable_json["pickups"] = get_pickups.call()
-	exportable_json["toggles"] = _fetch_toggled_walls()	
+	exportable_json["toggles"] = _fetch_toggled_walls()
 	_download_file(JSON.stringify(exportable_json), "ppp.json")
 
 
 func _on_load_json() -> void:
-	pass
+	_file_access_web.open("*.json")
+
+
+func _on_file_loaded(_file_name: String, _type: String, base64_data: String) -> void:
+	var contents = JSON.parse_string(Marshalls.base64_to_utf8(base64_data))
+	# I really don't like doing this here, but it works for now
+	var pickups = contents["pickups"] as Dictionary
+	var locations_with_assignments = get_tree().get_nodes_in_group("PickupLocations") \
+			.filter(func f(n): return pickups.has(n.name))
+	for node in locations_with_assignments as Array[PickupButton]:
+		node._model.from_dict(pickups.get(node.name))
+		node.update_modulation()
+	var toggles = contents["toggles"] as Array
+	var pressed_togglables = get_tree().get_nodes_in_group("WallLocations") \
+			.filter(func f(n): return toggles.has(n.name))
+	for node in pressed_togglables as Array[WallButton]:
+		node.set_pressed_no_signal(true)
+		node.update_modulation()
